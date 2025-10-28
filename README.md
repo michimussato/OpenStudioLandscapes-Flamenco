@@ -2,7 +2,7 @@
 
 ***
 
-1. [Feature: OpenStudioLandscapes-Template](#feature-openstudiolandscapes-template)
+1. [Feature: OpenStudioLandscapes-Flamenco](#feature-openstudiolandscapes-flamenco)
    1. [Brief](#brief)
    2. [Requirements](#requirements)
    3. [Install](#install)
@@ -30,7 +30,7 @@ This `README.md` was dynamically created with [OpenStudioLandscapesUtil-ReadmeGe
 
 ***
 
-# Feature: OpenStudioLandscapes-Template
+# Feature: OpenStudioLandscapes-Flamenco
 
 ## Brief
 
@@ -51,13 +51,13 @@ Clone this repository into `OpenStudioLandscapes/.features`:
 
 ```shell
 # cd .features
-git clone https://github.com/michimussato/OpenStudioLandscapes-Template.git
+git clone https://github.com/michimussato/OpenStudioLandscapes-Flamenco.git
 ```
 
 Create `venv`:
 
 ```shell
-# cd .features/OpenStudioLandscapes-Template
+# cd .features/OpenStudioLandscapes-Flamenco
 python3.11 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip setuptools
@@ -66,7 +66,7 @@ python -m pip install --upgrade pip setuptools
 Configure `venv`:
 
 ```shell
-# cd .features/OpenStudioLandscapes-Template
+# cd .features/OpenStudioLandscapes-Flamenco
 pip install -e "../../[dev]"
 pip install -e ".[dev]"
 ```
@@ -149,7 +149,7 @@ We create the following SBOMs:
 - [`pipdeptree`](https://pypi.org/project/pipdeptree/) (Dot)
 - [`pipdeptree`](https://pypi.org/project/pipdeptree/) (Mermaid)
 
-SBOMs for the different Python interpreters defined in [`.noxfile.VERSIONS`](https://github.com/michimussato/OpenStudioLandscapes-Template/tree/main/noxfile.py) will be created in the [`.sbom`](https://github.com/michimussato/OpenStudioLandscapes-Template/tree/main/.sbom) directory of this repository.
+SBOMs for the different Python interpreters defined in [`.noxfile.VERSIONS`](https://github.com/michimussato/OpenStudioLandscapes-Flamenco/tree/main/noxfile.py) will be created in the [`.sbom`](https://github.com/michimussato/OpenStudioLandscapes-Flamenco/tree/main/.sbom) directory of this repository.
 
 - `cyclone-dx`
 - `pipdeptree` (Dot)
@@ -161,7 +161,7 @@ Currently, the following Python interpreters are enabled for testing:
 
 ## Variables
 
-The following variables are being declared in `OpenStudioLandscapes.Template.constants` and are accessible throughout the [`OpenStudioLandscapes-Template`](https://github.com/michimussato/OpenStudioLandscapes-Template/tree/main/src/OpenStudioLandscapes/Template/constants.py) package.
+The following variables are being declared in `OpenStudioLandscapes.Template.constants` and are accessible throughout the [`OpenStudioLandscapes-Flamenco`](https://github.com/michimussato/OpenStudioLandscapes-Flamenco/tree/main/src/OpenStudioLandscapes/Template/constants.py) package.
 
 | Variable           | Type   |
 | :----------------- | :----- |
@@ -186,16 +186,18 @@ The following variables are being declared in `OpenStudioLandscapes.Template.con
 
 # Community
 
-| Feature                             | GitHub                                                                                                                                     | Discord                                                                |
-| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------- |
-| OpenStudioLandscapes                | [https://github.com/michimussato/OpenStudioLandscapes](https://github.com/michimussato/OpenStudioLandscapes)                               | [# openstudiolandscapes-general](https://discord.gg/F6bDRWsHac)        |
-| OpenStudioLandscapes-Ayon           | [https://github.com/michimussato/OpenStudioLandscapes-Ayon](https://github.com/michimussato/OpenStudioLandscapes-Ayon)                     | [# openstudiolandscapes-ayon](https://discord.gg/gd6etWAF3v)           |
-| OpenStudioLandscapes-Dagster        | [https://github.com/michimussato/OpenStudioLandscapes-Dagster](https://github.com/michimussato/OpenStudioLandscapes-Dagster)               | [# openstudiolandscapes-dagster](https://discord.gg/jwB3DwmKvs)        |
-| OpenStudioLandscapes-Kitsu          | [https://github.com/michimussato/OpenStudioLandscapes-Kitsu](https://github.com/michimussato/OpenStudioLandscapes-Kitsu)                   | [# openstudiolandscapes-kitsu](https://discord.gg/6cc6mkReJ7)          |
-| OpenStudioLandscapes-RustDeskServer | [https://github.com/michimussato/OpenStudioLandscapes-RustDeskServer](https://github.com/michimussato/OpenStudioLandscapes-RustDeskServer) | [# openstudiolandscapes-rustdeskserver](https://discord.gg/nJ8Ffd2xY3) |
-| OpenStudioLandscapes-Template       | [https://github.com/michimussato/OpenStudioLandscapes-Template](https://github.com/michimussato/OpenStudioLandscapes-Template)             | [# openstudiolandscapes-template](https://discord.gg/J59GYp3Wpy)       |
-| OpenStudioLandscapes-Twingate       | [https://github.com/michimussato/OpenStudioLandscapes-Twingate](https://github.com/michimussato/OpenStudioLandscapes-Twingate)             | [# openstudiolandscapes-twingate](https://discord.gg/tREYa6UNJf)       |
-| OpenStudioLandscapes-VERT           | [https://github.com/michimussato/OpenStudioLandscapes-VERT](https://github.com/michimussato/OpenStudioLandscapes-VERT)                     | [# openstudiolandscapes-twingate](https://discord.gg/FYaFRUwbYr)       |
+| Feature                              | GitHub                                                                                                                                       | Discord                                                                 |
+| ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| OpenStudioLandscapes                 | [https://github.com/michimussato/OpenStudioLandscapes](https://github.com/michimussato/OpenStudioLandscapes)                                 | [# openstudiolandscapes-general](https://discord.gg/F6bDRWsHac)         |
+| OpenStudioLandscapes-Ayon            | [https://github.com/michimussato/OpenStudioLandscapes-Ayon](https://github.com/michimussato/OpenStudioLandscapes-Ayon)                       | [# openstudiolandscapes-ayon](https://discord.gg/gd6etWAF3v)            |
+| OpenStudioLandscapes-Dagster         | [https://github.com/michimussato/OpenStudioLandscapes-Dagster](https://github.com/michimussato/OpenStudioLandscapes-Dagster)                 | [# openstudiolandscapes-dagster](https://discord.gg/jwB3DwmKvs)         |
+| OpenStudioLandscapes-Flamenco        | [https://github.com/michimussato/OpenStudioLandscapes-Flamenco](https://github.com/michimussato/OpenStudioLandscapes-Flamenco)               | [# openstudiolandscapes-flamenco](https://discord.gg/EPrX5fzBCf)        |
+| OpenStudioLandscapes-Flamenco-Worker | [https://github.com/michimussato/OpenStudioLandscapes-Flamenco-Worker](https://github.com/michimussato/OpenStudioLandscapes-Flamenco-Worker) | [# openstudiolandscapes-flamenco-worker](https://discord.gg/Sa2zFqSc4p) |
+| OpenStudioLandscapes-Kitsu           | [https://github.com/michimussato/OpenStudioLandscapes-Kitsu](https://github.com/michimussato/OpenStudioLandscapes-Kitsu)                     | [# openstudiolandscapes-kitsu](https://discord.gg/6cc6mkReJ7)           |
+| OpenStudioLandscapes-RustDeskServer  | [https://github.com/michimussato/OpenStudioLandscapes-RustDeskServer](https://github.com/michimussato/OpenStudioLandscapes-RustDeskServer)   | [# openstudiolandscapes-rustdeskserver](https://discord.gg/nJ8Ffd2xY3)  |
+| OpenStudioLandscapes-Template        | [https://github.com/michimussato/OpenStudioLandscapes-Template](https://github.com/michimussato/OpenStudioLandscapes-Template)               | [# openstudiolandscapes-template](https://discord.gg/J59GYp3Wpy)        |
+| OpenStudioLandscapes-Twingate        | [https://github.com/michimussato/OpenStudioLandscapes-Twingate](https://github.com/michimussato/OpenStudioLandscapes-Twingate)               | [# openstudiolandscapes-twingate](https://discord.gg/tREYa6UNJf)        |
+| OpenStudioLandscapes-VERT            | [https://github.com/michimussato/OpenStudioLandscapes-VERT](https://github.com/michimussato/OpenStudioLandscapes-VERT)                       | [# openstudiolandscapes-twingate](https://discord.gg/FYaFRUwbYr)        |
 
 To follow up on the previous LinkedIn publications, visit:
 
