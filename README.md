@@ -14,15 +14,11 @@
    6. [Variables](#variables)
       1. [Feature Configs](#feature-configs)
 2. [Community](#community)
-3. [Create new Feature from this Template](#create-new-feature-from-this-template)
-   1. [Create a new repository from this Template](#create-a-new-repository-from-this-template)
-   2. [Clone new Feature to your local drive](#clone-new-feature-to-your-local-drive)
-   3. [Replace `Template` occurrences in `OpenStudioLandscapes-NewFeature`](#replace-template-occurrences-in-openstudiolandscapes-newfeature)
-   4. [Commit your initial Setup](#commit-your-initial-setup)
-   5. [Tag `OpenStudioLandscapesUtil` Repos](#tag-openstudiolandscapesutil-repos)
-   6. [Enable OpenStudioLandscapes-NewFeature in the Engine](#enable-openstudiolandscapes-newfeature-in-the-engine)
-   7. [Known Issues](#known-issues)
-      1. [`no command specified`](#no-command-specified)
+3. [Official Resources](#official-resources)
+   1. [Quickstart](#quickstart)
+   2. [Help](#help)
+      1. [Manager](#manager)
+      2. [Worker](#worker)
 
 ***
 
@@ -79,15 +75,15 @@ Add the following code to `OpenStudioLandscapes.engine.features.FEATURES`:
 
 ```python
 FEATURES.update(
-    "OpenStudioLandscapes-Template": {
+    "OpenStudioLandscapes-Flamenco": {
         "enabled": True|False,
         # - from ENVIRONMENT VARIABLE (.env):
         #   "enabled": get_bool_env("ENV_VAR")
         # - combined:
         #   "enabled": True|False or get_bool_env(
-        #       "OPENSTUDIOLANDSCAPES__ENABLE_FEATURE_OPENSTUDIOLANDSCAPES_TEMPLATE"
+        #       "OPENSTUDIOLANDSCAPES__ENABLE_FEATURE_OPENSTUDIOLANDSCAPES_FLAMENCO"
         #   )
-        "module": "OpenStudioLandscapes.Template.definitions",
+        "module": "OpenStudioLandscapes.Flamenco.definitions",
         "compose_scope": ComposeScope.DEFAULT,
         "feature_config": OpenStudioLandscapesConfig.DEFAULT,
     }
@@ -161,7 +157,7 @@ Currently, the following Python interpreters are enabled for testing:
 
 ## Variables
 
-The following variables are being declared in `OpenStudioLandscapes.Template.constants` and are accessible throughout the [`OpenStudioLandscapes-Flamenco`](https://github.com/michimussato/OpenStudioLandscapes-Flamenco/tree/main/src/OpenStudioLandscapes/Template/constants.py) package.
+The following variables are being declared in `OpenStudioLandscapes.Flamenco.constants` and are accessible throughout the [`OpenStudioLandscapes-Flamenco`](https://github.com/michimussato/OpenStudioLandscapes-Flamenco/tree/main/src/OpenStudioLandscapes/Flamenco/constants.py) package.
 
 | Variable           | Type   |
 | :----------------- | :----- |
@@ -173,16 +169,15 @@ The following variables are being declared in `OpenStudioLandscapes.Template.con
 
 #### Feature Config: default
 
-| Variable                    | Type   | Value                                                                  |
-| :-------------------------- | :----- | :--------------------------------------------------------------------- |
-| `DOCKER_USE_CACHE`          | `bool` | `False`                                                                |
-| `HOSTNAME`                  | `str`  | `template`                                                             |
-| `TELEPORT_ENTRY_POINT_HOST` | `str`  | `{{HOSTNAME}}`                                                         |
-| `TELEPORT_ENTRY_POINT_PORT` | `str`  | `{{ENV_VAR_PORT_HOST}}`                                                |
-| `ENV_VAR_PORT_HOST`         | `str`  | `1234`                                                                 |
-| `ENV_VAR_PORT_CONTAINER`    | `str`  | `4321`                                                                 |
-| `EXTRA_FILE`                | `str`  | `{DOT_FEATURES}/OpenStudioLandscapes-Template/.payload/bin/extra.file` |
-| `TEMPLATE_VOLUME`           | `str`  | `{DOT_LANDSCAPES}/{LANDSCAPE}/Template__Template/data`                 |
+| Variable                          | Type   | Value                   |
+| :-------------------------------- | :----- | :---------------------- |
+| `DOCKER_USE_CACHE`                | `bool` | `False`                 |
+| `HOSTNAME`                        | `str`  | `flamenco`              |
+| `TELEPORT_ENTRY_POINT_HOST`       | `str`  | `{{HOSTNAME}}`          |
+| `TELEPORT_ENTRY_POINT_PORT`       | `str`  | `{{ENV_VAR_PORT_HOST}}` |
+| `FLAMENCO_MANAGER_PORT_HOST`      | `str`  | `8484`                  |
+| `FLAMENCO_MANAGER_PORT_CONTAINER` | `str`  | `8080`                  |
+| `FLAMENCO_VERSION`                | `str`  | `3.7`                   |
 
 # Community
 
@@ -206,106 +201,63 @@ To follow up on the previous LinkedIn publications, visit:
 
 ***
 
-# Create new Feature from this Template
+# Official Resources
 
-[![Logo OpenStudioLandscapes ](https://github.com/michimussato/OpenStudioLandscapes/raw/main/media/images/logo128.png)](https://www.url.com)
+[![Logo Flamenco ](https://flamenco.blender.org/brand.svg)](https://flamenco.blender.org/)
 
-## Create a new repository from this Template
+Official Flamenco information.
 
-Click `Use this template` and select `Create a new repository`
+## Quickstart
 
-![Create a new repository ](media/images/use_template.png)
+- [Quickstart](https://flamenco.blender.org/usage/quickstart/)
 
-And fill in information as needed by specifying the `Repository name *` of the OpenStudioLandscapes Feature (i.e. `OpenStudioLandscapes-NewFeature`):
+## Help
 
-![Create a new repository ](media/images/create_repository.png)
-
-## Clone new Feature to your local drive
-
-Clone the new Feature into the `.features` directory of your local `OpenStudioLandscapes` clone:
+### Manager
 
 ```generic
-cd /to/your/git/repos/OpenStudioLandscapes/.features
-git clone <GIT_REPOSITORY_URL>
+./flamenco-manager --help                                                                                                                                                                                                              ✔ 
+2025-10-29T13:04:02+01:00 INF starting Flamenco arch=amd64 git=72c1bad4 os=linux osDetail="Manjaro Linux (6.16.8-1-MANJARO)" releaseCycle=release version=3.7
+Usage of ./flamenco-manager:
+  -debug
+        Enable debug-level logging.
+  -delay
+        Add a random delay to any HTTP responses. This aids in development of Flamenco Manager's web frontend.
+  -pprof
+        Expose profiler endpoints on /debug/pprof/.
+  -quiet
+        Only log warning-level and worse.
+  -setup-assistant
+        Open a webbrowser with the setup assistant.
+  -trace
+        Enable trace-level logging.
+  -version
+        Shows the application version, then exits.
+  -write-config
+        Writes configuration to flamenco-manager.yaml, then exits.
 ```
 
-## Replace `Template` occurrences in `OpenStudioLandscapes-NewFeature`
-
-Rename the package directory from `Template` to `NewFeature`:
+### Worker
 
 ```generic
-NEW_FEATURE="NewFeature"
-
-cd /to/your/git/repos/OpenStudioLandscapes/.features/OpenStudioLandscapes-${NEW_FEATURE}
-mv src/OpenStudioLandscapes/Template src/OpenStudioLandscapes/${NEW_FEATURE}
-```
-
-Rename all occurrences of `template` in your new Feature with the correct name in the following files:
-
-- update [`./pyproject.toml`](./pyproject.toml)
-- update `./src/OpenStudioLandscapes/${NEW_FEATURE}/__init__.py`
-- update `./src/OpenStudioLandscapes/${NEW_FEATURE}/assets.py`
-- update `./src/OpenStudioLandscapes/${NEW_FEATURE}/constants.py`
-- update `./src/OpenStudioLandscapes/${NEW_FEATURE}/definitions.py`
-- update `./src/OpenStudioLandscapes/${NEW_FEATURE}/readme_feature.py` [`snakemd` Documentation](https://www.snakemd.io/en/latest/)
-- update `/.coveragerc`
-- remove media `rm ./media/images/*.*`
-- remove nox reports `rm ./.nox/*.*`
-- remove sbom reports `rm ./.sbom/*.*`
-
-## Commit your initial Setup
-
-Commit all changes to Git:
-
-```generic
-git add *
-git commit -m "Initial Setup"
-git push
-```
-
-## Tag `OpenStudioLandscapesUtil` Repos
-
-- [OpenStudioLandscapesUtil-HarborCLI](https://github.com/michimussato/OpenStudioLandscapesUtil-HarborCLI?tab=readme-ov-file#tagging)
-- [OpenStudioLandscapesUtil-ReadmeGenerator](https://github.com/michimussato/OpenStudioLandscapesUtil-ReadmeGenerator?tab=readme-ov-file#tagging)
-
-## Enable OpenStudioLandscapes-NewFeature in the Engine
-
-Commit all changes to Git:
-
-```generic
-cd /to/your/git/repos/OpenStudioLandscapes
-source .venv/bin/activate
-pip install --editable .features/OpenStudioLandscapes-${NEW_FEATURE}[dev]
-pip install --editable .[dev]
-```
-
-Edit the `OpenStudioLandscapes.engine` to use your new Feature:
-
-- update `OpenStudioLandscapes/.env`
-- update `OpenStudioLandscapes/src/OpenStudioLandscapes/engine/features.py`
-- update `OpenStudioLandscapes/README.md#current-feature-statuses`
-
-## Known Issues
-
-### `no command specified`
-
-`OpenStudioLandscapes-Template` can't be launched as a Feature in a Landscape. If you do, this is the error message you will be presented with:
-
-```shell
-$ /home/michael/git/repos/OpenStudioLandscapes/.landscapes/2025-10-20-12-51-39-68351d36801042cb943f1675e611e3c0/ComposeScope_default__ComposeScope_default/ComposeScope_default__DOCKER_COMPOSE/docker_compose/docker_compose_up.sh
-~/git/repos/OpenStudioLandscapes/.landscapes/2025-10-20-12-51-39-68351d36801042cb943f1675e611e3c0/ComposeScope_default__ComposeScope_default/ComposeScope_default__DOCKER_COMPOSE/docker_compose ~
-Working Directory: /home/michael/git/repos/OpenStudioLandscapes/.landscapes/2025-10-20-12-51-39-68351d36801042cb943f1675e611e3c0/ComposeScope_default__ComposeScope_default/ComposeScope_default__DOCKER_COMPOSE/docker_compose
-Sourcing ../../../../2025-10-20-12-51-39-68351d36801042cb943f1675e611e3c0/.overrides file...
-Sourced successfully.
- Container hbbs--2025-10-20-12-51-39-68351d36801042cb943f1675e611e3c0  Creating
- Container dagster--2025-10-20-12-51-39-68351d36801042cb943f1675e611e3c0  Creating
- Container template--2025-10-20-12-51-39-68351d36801042cb943f1675e611e3c0  Creating
- Container mongo-express-10-2--2025-10-20-12-51-39-68351d36801042cb943f1675e611e3c0  Creating
- Container repository-installer-10-2--2025-10-20-12-51-39-68351d36801042cb943f1675e611e3c0  Creating
- Container ayon-server--2025-10-20-12-51-39-68351d36801042cb943f1675e611e3c0  Creating
- Container opencue-flyway--2025-10-20-12-51-39-68351d36801042cb943f1675e611e3c0  Creating
- Container kitsu--2025-10-20-12-51-39-68351d36801042cb943f1675e611e3c0  Creating
- Container template--2025-10-20-12-51-39-68351d36801042cb943f1675e611e3c0  Error response from daemon: no command specified
-Error response from daemon: no command specified
-~
+./flamenco-worker --help                                                                                                                                                                                                               ✔ 
+Usage of ./flamenco-worker:
+  -debug
+        Enable debug-level logging.
+  -find-manager
+        Autodiscover a Manager, then quit.
+  -flush
+        Flush any buffered task updates to the Manager, then exits.
+  -manager string
+        URL of the Flamenco Manager.
+  -quiet
+        Only log warning-level and worse.
+  -register
+        (Re-)register at the Manager.
+  -restart-exit-code int
+        Mark this Worker as restartable. It will exit with this code to signify it needs to be restarted.
+  -trace
+        Enable trace-level logging.
+  -version
+        Shows the application version, then exits.
 ```

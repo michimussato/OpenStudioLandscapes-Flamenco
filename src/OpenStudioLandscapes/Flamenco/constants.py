@@ -41,11 +41,48 @@ ASSET_HEADER = {
 FEATURE_CONFIGS = {
     OpenStudioLandscapesConfig.DEFAULT: {
         "DOCKER_USE_CACHE": DOCKER_USE_CACHE,
-        "HOSTNAME": "flamenco",
+        "HOSTNAME": "flamenco-manager",
         "TELEPORT_ENTRY_POINT_HOST": "{{HOSTNAME}}",  # Either a hardcoded str or a ref to a Variable (with double {{ }}!)
-        "TELEPORT_ENTRY_POINT_PORT": "{{ENV_VAR_PORT_HOST}}",  # Either a hardcoded str or a ref to a Variable (with double {{ }}!)
-        # "ENV_VAR_PORT_HOST": "1234",
-        # "ENV_VAR_PORT_CONTAINER": "4321",
+        "TELEPORT_ENTRY_POINT_PORT": "{{FLAMENCO_MANAGER_PORT_HOST}}",  # Either a hardcoded str or a ref to a Variable (with double {{ }}!)
+        "FLAMENCO_MANAGER_PORT_HOST": "8484",
+        "FLAMENCO_MANAGER_PORT_CONTAINER": "8080",
+        "FLAMENCO_VERSION": "3.7",
+        "FLAMENCO_STORAGE": {
+            FeatureVolumeType.CONTAINED: pathlib.Path(
+                "{DOT_LANDSCAPES}",
+                "{LANDSCAPE}",
+                f"{GROUP}__{'__'.join(KEY)}",
+                "storage",
+            )
+            .expanduser()
+            .as_posix(),
+            FeatureVolumeType.SHARED: pathlib.Path(
+                "{DOT_LANDSCAPES}",
+                "{DOT_SHARED_VOLUMES}",
+                f"{GROUP}__{'__'.join(KEY)}",
+                "storage",
+            )
+            .expanduser()
+            .as_posix(),
+        }[FeatureVolumeType.CONTAINED],
+        "FLAMENCO_SHARED_STORAGE": {
+            FeatureVolumeType.CONTAINED: pathlib.Path(
+                "{DOT_LANDSCAPES}",
+                "{LANDSCAPE}",
+                f"{GROUP}__{'__'.join(KEY)}",
+                "shared_storage",
+            )
+            .expanduser()
+            .as_posix(),
+            FeatureVolumeType.SHARED: pathlib.Path(
+                "{DOT_LANDSCAPES}",
+                "{DOT_SHARED_VOLUMES}",
+                f"{GROUP}__{'__'.join(KEY)}",
+                "shared_storage",
+            )
+            .expanduser()
+            .as_posix(),
+        }[FeatureVolumeType.CONTAINED],
         # f"EXTRA_FILE": pathlib.Path(
         #     "{DOT_FEATURES}",
         #     FEATURE,
