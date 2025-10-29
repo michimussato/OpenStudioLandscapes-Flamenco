@@ -169,15 +169,17 @@ The following variables are being declared in `OpenStudioLandscapes.Flamenco.con
 
 #### Feature Config: default
 
-| Variable                          | Type   | Value                   |
-| :-------------------------------- | :----- | :---------------------- |
-| `DOCKER_USE_CACHE`                | `bool` | `False`                 |
-| `HOSTNAME`                        | `str`  | `flamenco`              |
-| `TELEPORT_ENTRY_POINT_HOST`       | `str`  | `{{HOSTNAME}}`          |
-| `TELEPORT_ENTRY_POINT_PORT`       | `str`  | `{{ENV_VAR_PORT_HOST}}` |
-| `FLAMENCO_MANAGER_PORT_HOST`      | `str`  | `8484`                  |
-| `FLAMENCO_MANAGER_PORT_CONTAINER` | `str`  | `8080`                  |
-| `FLAMENCO_VERSION`                | `str`  | `3.7`                   |
+| Variable                          | Type   | Value                                                            |
+| :-------------------------------- | :----- | :--------------------------------------------------------------- |
+| `DOCKER_USE_CACHE`                | `bool` | `False`                                                          |
+| `HOSTNAME`                        | `str`  | `flamenco-manager`                                               |
+| `TELEPORT_ENTRY_POINT_HOST`       | `str`  | `{{HOSTNAME}}`                                                   |
+| `TELEPORT_ENTRY_POINT_PORT`       | `str`  | `{{FLAMENCO_MANAGER_PORT_HOST}}`                                 |
+| `FLAMENCO_MANAGER_PORT_HOST`      | `str`  | `8484`                                                           |
+| `FLAMENCO_MANAGER_PORT_CONTAINER` | `str`  | `8080`                                                           |
+| `FLAMENCO_VERSION`                | `str`  | `3.7`                                                            |
+| `FLAMENCO_STORAGE`                | `str`  | `{DOT_LANDSCAPES}/{LANDSCAPE}/Flamenco__Flamenco/storage`        |
+| `FLAMENCO_SHARED_STORAGE`         | `str`  | `{DOT_LANDSCAPES}/{LANDSCAPE}/Flamenco__Flamenco/shared_storage` |
 
 # Community
 
@@ -213,6 +215,8 @@ Official Flamenco information.
 
 ## Help
 
+Remember to add flamenco-manager FQDN to your local DNS server for the worker to be able to find it by.
+
 ### Manager
 
 ```generic
@@ -237,6 +241,8 @@ Usage of ./flamenco-manager:
         Writes configuration to flamenco-manager.yaml, then exits.
 ```
 
+- [Manager Configuration](https://flamenco.blender.org/usage/manager-configuration/)
+
 ### Worker
 
 ```generic
@@ -260,4 +266,28 @@ Usage of ./flamenco-worker:
         Enable trace-level logging.
   -version
         Shows the application version, then exits.
+```
+
+- [Worker Configuration](https://flamenco.blender.org/usage/worker-configuration/)
+
+```generic
+./flamenco-worker -manager flamenco-manager.openstudiolandscapes.lan:8484                                                                                                                                                              ✔ 
+2025-10-29T15:30:42+01:00 INF starting Flamenco Worker arch=amd64 git=72c1bad4 os=linux osDetail="Manjaro Linux (6.16.8-1-MANJARO)" pid=625742 releaseCycle=release version=3.7
+2025-10-29T15:30:42+01:00 INF will load configuration from these paths credentials=/home/michael/.local/share/flamenco/flamenco-worker-credentials.yaml main=/home/michael/Downloads/flamenco-3.7-linux-amd64/flamenco-worker.yaml
+2025-10-29T15:30:42+01:00 INF using Manager URL from commandline manager=http://flamenco-manager.openstudiolandscapes.lan:8484
+2025-10-29T15:30:42+01:00 INF Blender could not be found. Flamenco Manager will have to supply the full path to Blender when tasks are sent to this Worker. For more info see https://flamenco.blender.org/usage/variables/blender/
+2025-10-29T15:30:42+01:00 INF FFmpeg found on this system path=/home/michael/Downloads/flamenco-3.7-linux-amd64/tools/ffmpeg-linux-amd64 version=7.0.2-static
+2025-10-29T15:30:42+01:00 INF loaded configuration config={"ConfiguredManager":"","LinuxOOMScoreAdjust":null,"ManagerURL":"http://flamenco-manager.openstudiolandscapes.lan:8484","RestartExitCode":0,"TaskTypes":["blender","ffmpeg","file-management","misc"],"WorkerName":""}
+2025-10-29T15:30:42+01:00 INF loaded credentials filename=/home/michael/.local/share/flamenco/flamenco-worker-credentials.yaml
+2025-10-29T15:30:42+01:00 INF signing on at Manager manager=http://flamenco-manager.openstudiolandscapes.lan:8484 name=lenovo softwareVersion=3.7 taskTypes=["blender","ffmpeg","file-management","misc"]
+2025-10-29T15:30:42+01:00 WRN unable to sign on at Manager code=403 resp={"code":0,"message":"Security requirements failed"}
+2025-10-29T15:30:42+01:00 INF registered at Manager code=200 resp={"address":"192.168.178.195","name":"lenovo","platform":"linux","software":"","status":"","supported_task_types":["blender","ffmpeg","file-management","misc"],"uuid":"73f5de82-a3aa-4f93-ab88-b3adf0be35d6"}
+2025-10-29T15:30:42+01:00 INF Saved configuration file filename=/home/michael/.local/share/flamenco/flamenco-worker-credentials.yaml
+2025-10-29T15:30:42+01:00 INF signing on at Manager manager=http://flamenco-manager.openstudiolandscapes.lan:8484 name=lenovo softwareVersion=3.7 taskTypes=["blender","ffmpeg","file-management","misc"]
+2025-10-29T15:30:42+01:00 INF manager accepted sign-on startup_state=awake
+2025-10-29T15:30:42+01:00 INF opening database dsn=/home/michael/.local/share/flamenco/flamenco-worker.sqlite
+2025-10-29T15:30:42+01:00 INF state change curState=starting newState=awake
+^C2025-10-29T15:30:49+01:00 INF signal received, shutting down. signal=interrupt
+2025-10-29T15:30:49+01:00 INF signing off at Manager state=offline
+2025-10-29T15:30:49+01:00 WRN shutdown complete, stopping process.
 ```

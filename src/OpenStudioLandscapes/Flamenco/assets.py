@@ -381,9 +381,7 @@ def flamenco_manager_yaml(
               platform: all
               value: -b -y\
         """
-    ).format(
-        **env
-    )
+    ).format(**env)
 
     docker_yaml = yaml.safe_load(flamenco_manager_yaml_str)
 
@@ -399,8 +397,12 @@ def flamenco_manager_yaml(
     yield AssetMaterialization(
         asset_key=context.asset_key,
         metadata={
-            "__".join(context.asset_key.path): MetadataValue.path(flamenco_manager_yaml_path),
-            "docker_yaml": MetadataValue.md(f"```yaml\n{yaml.safe_dump(docker_yaml, indent=2)}\n```"),
+            "__".join(context.asset_key.path): MetadataValue.path(
+                flamenco_manager_yaml_path
+            ),
+            "docker_yaml": MetadataValue.md(
+                f"```yaml\n{yaml.safe_dump(docker_yaml, indent=2)}\n```"
+            ),
         },
     )
 
