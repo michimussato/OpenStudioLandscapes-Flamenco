@@ -34,7 +34,7 @@ from OpenStudioLandscapes.engine.enums import *
 from OpenStudioLandscapes.engine.utils import *
 from OpenStudioLandscapes.engine.utils.docker import *
 
-from OpenStudioLandscapes.Template.constants import *
+from OpenStudioLandscapes.Flamenco.constants import *
 
 constants = get_constants(
     ASSET_HEADER=ASSET_HEADER,
@@ -261,8 +261,8 @@ def compose_networks(
     if compose_network_mode == ComposeNetworkMode.DEFAULT:
         docker_dict = {
             "networks": {
-                "template": {
-                    "name": "network_template",
+                "flamenco": {
+                    "name": "network_flamenco",
                 },
             },
         }
@@ -303,7 +303,7 @@ def compose_networks(
         ),
     },
 )
-def compose_template(
+def compose_flamenco(
     context: AssetExecutionContext,
     build: dict,  # pylint: disable=redefined-outer-name
     env: dict,  # pylint: disable=redefined-outer-name
@@ -355,7 +355,7 @@ def compose_template(
 
     command = []
 
-    service_name = "template"
+    service_name = "flamenco"
     container_name = "--".join([service_name, env.get("LANDSCAPE", "default")])
     host_name = ".".join(
         [env["HOSTNAME"] or service_name, env["OPENSTUDIOLANDSCAPES__DOMAIN_LAN"]]
@@ -400,8 +400,8 @@ def compose_template(
 @asset(
     **ASSET_HEADER,
     ins={
-        "compose_template": AssetIn(
-            AssetKey([*ASSET_HEADER["key_prefix"], "compose_template"]),
+        "compose_flamenco": AssetIn(
+            AssetKey([*ASSET_HEADER["key_prefix"], "compose_flamenco"]),
         ),
     },
 )
