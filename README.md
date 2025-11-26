@@ -172,9 +172,6 @@ The following variables are being declared in `OpenStudioLandscapes.Flamenco.con
 | Variable                          | Type   | Value                                                            |
 | :-------------------------------- | :----- | :--------------------------------------------------------------- |
 | `DOCKER_USE_CACHE`                | `bool` | `False`                                                          |
-| `HOSTNAME`                        | `str`  | `flamenco-manager`                                               |
-| `TELEPORT_ENTRY_POINT_HOST`       | `str`  | `{{HOSTNAME}}`                                                   |
-| `TELEPORT_ENTRY_POINT_PORT`       | `str`  | `{{FLAMENCO_MANAGER_PORT_HOST}}`                                 |
 | `FLAMENCO_MANAGER_PORT_HOST`      | `str`  | `8484`                                                           |
 | `FLAMENCO_MANAGER_PORT_CONTAINER` | `str`  | `8080`                                                           |
 | `FLAMENCO_VERSION`                | `str`  | `3.7`                                                            |
