@@ -41,9 +41,7 @@ ASSET_HEADER = {
 FEATURE_CONFIGS = {
     OpenStudioLandscapesConfig.DEFAULT: {
         "DOCKER_USE_CACHE": DOCKER_USE_CACHE,
-        "HOSTNAME": "flamenco-manager",
-        "TELEPORT_ENTRY_POINT_HOST": "{{HOSTNAME}}",  # Either a hardcoded str or a ref to a Variable (with double {{ }}!)
-        "TELEPORT_ENTRY_POINT_PORT": "{{FLAMENCO_MANAGER_PORT_HOST}}",  # Either a hardcoded str or a ref to a Variable (with double {{ }}!)
+        # "HOSTNAME": "flamenco-manager",
         "FLAMENCO_MANAGER_PORT_HOST": "8484",
         "FLAMENCO_MANAGER_PORT_CONTAINER": "8080",
         "FLAMENCO_VERSION": "3.7",
