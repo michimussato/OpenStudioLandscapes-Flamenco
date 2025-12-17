@@ -1,0 +1,14 @@
+# Base Information
+group_name: "OpenStudioLandscapes_Flamenco"
+key_prefixes:
+  - "OpenStudioLandscapes_Flamenco"
+
+compose_scope: "default"
+
+#flamenco_manager_port_host: 8484
+#flamenco_manager_port_container: 8080
+
+#flamenco_version: "3.7"
+
+#flamenco_storage: "{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/storage"
+#flamenco_shared_storage: "{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/shared_storage"
