@@ -165,7 +165,7 @@ def build_docker_image(
 
         # SHELL ["/bin/bash", "-c"]
 
-        ENV FLAMENCO_URL=https://flamenco.blender.org/downloads/flamenco-{flamenco_version}-linux-amd64.tar.gz
+        ENV FLAMENCO_URL={flamenco_version}
         
         WORKDIR /app
         

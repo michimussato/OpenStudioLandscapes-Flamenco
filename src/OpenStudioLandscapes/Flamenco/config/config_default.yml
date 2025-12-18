@@ -3,12 +3,14 @@ group_name: "OpenStudioLandscapes_Flamenco"
 key_prefixes:
   - "OpenStudioLandscapes_Flamenco"
 
-compose_scope: "default"
+#compose_scope: "default"
+
+#enabled: true
 
 #flamenco_manager_port_host: 8484
 #flamenco_manager_port_container: 8080
 
-#flamenco_version: "3.7"
+#flamenco_version: "https://flamenco.blender.org/downloads/flamenco-3.7-linux-amd64.tar.gz"
 
 #flamenco_storage: "{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/storage"
 #flamenco_shared_storage: "{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/shared_storage"

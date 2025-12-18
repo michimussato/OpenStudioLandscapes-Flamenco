@@ -1,3 +1,4 @@
+import enum
 import pathlib
 
 from dagster import get_dagster_logger
@@ -16,6 +17,11 @@ config_default = pathlib.Path(__file__).parent.joinpath("config_default.yml")
 CONFIG_STR = config_default.read_text()
 
 
+class FlamencoArchives(enum.StrEnum):
+    version_3_7 = "https://flamenco.blender.org/downloads/flamenco-3.7-linux-amd64.tar.gz"
+    version_3_8 = "https://flamenco.blender.org/downloads/flamenco-3.8-linux-amd64.tar.gz"
+
+
 class Config(FeatureBaseModel):
 
     feature_name: str = dist.name
@@ -32,8 +38,9 @@ class Config(FeatureBaseModel):
 
     # Todo
     # - [ ] Tuple?
-    flamenco_version: str = Field(
-        default="3.7",
+    flamenco_version: FlamencoArchives = Field(
+        default=FlamencoArchives.version_3_7,
+        examples=[i.name for i in FlamencoArchives],
     )
 
     # Todo
