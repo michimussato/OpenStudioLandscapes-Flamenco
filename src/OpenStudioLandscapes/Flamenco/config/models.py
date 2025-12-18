@@ -26,7 +26,7 @@ class Config(FeatureBaseModel):
 
     feature_name: str = dist.name
 
-    definitions: str = "OpenStudioLandscapes.Ayon.definitions"
+    definitions: str = "OpenStudioLandscapes.Flamenco.definitions"
 
     flamenco_manager_port_host: PositiveInt = Field(
         default=8484,
