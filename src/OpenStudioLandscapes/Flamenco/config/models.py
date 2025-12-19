@@ -18,8 +18,12 @@ CONFIG_STR = config_default.read_text()
 
 
 class FlamencoArchives(enum.StrEnum):
-    version_3_7 = "https://flamenco.blender.org/downloads/flamenco-3.7-linux-amd64.tar.gz"
-    version_3_8 = "https://flamenco.blender.org/downloads/flamenco-3.8-linux-amd64.tar.gz"
+    version_3_7 = (
+        "https://flamenco.blender.org/downloads/flamenco-3.7-linux-amd64.tar.gz"
+    )
+    version_3_8 = (
+        "https://flamenco.blender.org/downloads/flamenco-3.8-linux-amd64.tar.gz"
+    )
 
 
 class Config(FeatureBaseModel):
