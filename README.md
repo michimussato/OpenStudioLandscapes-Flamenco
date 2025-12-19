@@ -5,7 +5,6 @@
 1. [Feature: OpenStudioLandscapes-Flamenco](#feature-openstudiolandscapes-flamenco)
    1. [Brief](#brief)
    2. [Configuration](#configuration)
-   3. [Official Resources](#official-resources)
 2. [Official Resources](#official-resources)
    1. [Quickstart](#quickstart)
    2. [Help](#help)
@@ -82,8 +81,6 @@ key_prefixes:
 ```
 
 ***
-
-## Official Resources
 
 # Official Resources
 
@@ -295,4 +292,4 @@ Currently, the following Python interpreters are enabled for testing:
 
 ***
 
-Last changed: **2025-12-19 15:51:32 UTC**.
+Last changed: **2025-12-19 16:41:27 UTC**
