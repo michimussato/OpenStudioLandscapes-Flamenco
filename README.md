@@ -5,7 +5,7 @@
 1. [Feature: OpenStudioLandscapes-Flamenco](#feature-openstudiolandscapes-flamenco)
    1. [Brief](#brief)
    2. [Configuration](#configuration)
-2. [Official Resources](#official-resources)
+2. [External Resources](#external-resources)
    1. [Quickstart](#quickstart)
    2. [Help](#help)
       1. [Manager](#manager)
@@ -82,7 +82,7 @@ key_prefixes:
 
 ***
 
-# Official Resources
+# External Resources
 
 [![Logo Flamenco ](https://flamenco.blender.org/brand.svg)](https://flamenco.blender.org/)
 
@@ -292,4 +292,4 @@ Currently, the following Python interpreters are enabled for testing:
 
 ***
 
-Last changed: **2025-12-19 16:47:51 UTC**
+Last changed: **2025-12-19 21:11:31 UTC**
