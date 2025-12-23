@@ -66,16 +66,17 @@ The following settings are available in `OpenStudioLandscapes-Flamenco` and are 
 # ---
 #
 # Type: typing.Dict
-# Base Class:
-#     Required: False
+# Base Class Info:
+#     Required:
+#         False
 #     Description:
 #         None
 #     Default value:
 #         None
 # Description:
 #     None
-# Required: False
-#     None
+# Required:
+#     False
 # Examples:
 #     None
 
@@ -85,16 +86,17 @@ The following settings are available in `OpenStudioLandscapes-Flamenco` and are 
 # -------------
 #
 # Type: <class 'OpenStudioLandscapes.engine.config.models.ConfigEngine'>
-# Base Class:
-#     Required: False
+# Base Class Info:
+#     Required:
+#         False
 #     Description:
 #         None
 #     Default value:
 #         None
 # Description:
 #     None
-# Required: False
-#     None
+# Required:
+#     False
 # Examples:
 #     None
 
@@ -104,16 +106,17 @@ The following settings are available in `OpenStudioLandscapes-Flamenco` and are 
 # -------------
 #
 # Type: <class 'OpenStudioLandscapes.engine.config.models.FeatureBaseModel'>
-# Base Class:
-#     Required: False
+# Base Class Info:
+#     Required:
+#         False
 #     Description:
 #         None
 #     Default value:
 #         None
 # Description:
 #     None
-# Required: False
-#     None
+# Required:
+#     False
 # Examples:
 #     None
 
@@ -123,16 +126,17 @@ The following settings are available in `OpenStudioLandscapes-Flamenco` and are 
 # ------------
 #
 # Type: <class 'importlib.metadata.Distribution'>
-# Base Class:
-#     Required: False
+# Base Class Info:
+#     Required:
+#         False
 #     Description:
 #         None
 #     Default value:
 #         None
 # Description:
 #     None
-# Required: False
-#     None
+# Required:
+#     False
 # Examples:
 #     None
 
@@ -142,16 +146,17 @@ The following settings are available in `OpenStudioLandscapes-Flamenco` and are 
 # ----------
 #
 # Type: <class 'str'>
-# Base Class:
-#     Required: False
+# Base Class Info:
+#     Required:
+#         False
 #     Description:
 #         None
 #     Default value:
 #         None
 # Description:
 #     None
-# Required: False
-#     None
+# Required:
+#     False
 # Examples:
 #     None
 
@@ -161,16 +166,17 @@ The following settings are available in `OpenStudioLandscapes-Flamenco` and are 
 # ------------
 #
 # Type: typing.List[str]
-# Base Class:
-#     Required: False
+# Base Class Info:
+#     Required:
+#         False
 #     Description:
 #         None
 #     Default value:
 #         None
 # Description:
 #     None
-# Required: False
-#     None
+# Required:
+#     False
 # Examples:
 #     None
 
@@ -180,16 +186,17 @@ The following settings are available in `OpenStudioLandscapes-Flamenco` and are 
 # -------
 #
 # Type: <class 'bool'>
-# Base Class:
-#     Required: False
+# Base Class Info:
+#     Required:
+#         False
 #     Description:
 #         Whether the Feature is enabled or not.
 #     Default value:
 #         True
 # Description:
 #     Whether the Feature is enabled or not.
-# Required: False
-#     Whether the Feature is enabled or not.
+# Required:
+#     False
 # Examples:
 #     None
 
@@ -199,16 +206,17 @@ The following settings are available in `OpenStudioLandscapes-Flamenco` and are 
 # -------------
 #
 # Type: <class 'str'>
-# Base Class:
-#     Required: False
+# Base Class Info:
+#     Required:
+#         False
 #     Description:
 #         None
 #     Default value:
 #         default
 # Description:
 #     None
-# Required: False
-#     None
+# Required:
+#     False
 # Examples:
 #     ['default', 'license_server', 'worker']
 
@@ -218,16 +226,17 @@ The following settings are available in `OpenStudioLandscapes-Flamenco` and are 
 # ------------
 #
 # Type: <class 'str'>
-# Base Class:
-#     Required: True
+# Base Class Info:
+#     Required:
+#         True
 #     Description:
 #         The name of the feature. It is derived from the `OpenStudioLandscapes.<Feature>.dist` attribute.
 #     Default value:
 #         PydanticUndefined
 # Description:
 #     None
-# Required: False
-#     None
+# Required:
+#     False
 # Examples:
 #     None
 feature_name: OpenStudioLandscapes-Flamenco
@@ -238,16 +247,17 @@ feature_name: OpenStudioLandscapes-Flamenco
 # --------------
 #
 # Type: <class 'pathlib.Path'>
-# Base Class:
-#     Required: False
+# Base Class Info:
+#     Required:
+#         False
 #     Description:
 #         The path to the `docker-compose.yml` file.
 #     Default value:
 #         {DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/docker_compose/docker-compose.yml
 # Description:
 #     The path to the `docker-compose.yml` file.
-# Required: False
-#     The path to the `docker-compose.yml` file.
+# Required:
+#     False
 # Examples:
 #     None
 
@@ -259,8 +269,8 @@ feature_name: OpenStudioLandscapes-Flamenco
 # Type: <class 'int'>
 # Description:
 #     None
-# Required: False
-#     None
+# Required:
+#     False
 # Examples:
 #     None
 flamenco_manager_port_host: 8484
@@ -273,8 +283,8 @@ flamenco_manager_port_host: 8484
 # Type: <class 'int'>
 # Description:
 #     None
-# Required: False
-#     None
+# Required:
+#     False
 # Examples:
 #     None
 flamenco_manager_port_container: 8080
@@ -287,8 +297,8 @@ flamenco_manager_port_container: 8080
 # Type: <enum 'FlamencoArchives'>
 # Description:
 #     None
-# Required: False
-#     None
+# Required:
+#     False
 # Examples:
 #     ['version_3_7', 'version_3_8']
 flamenco_version: https://flamenco.blender.org/downloads/flamenco-3.7-linux-amd64.tar.gz
@@ -301,8 +311,8 @@ flamenco_version: https://flamenco.blender.org/downloads/flamenco-3.7-linux-amd6
 # Type: <class 'pathlib.Path'>
 # Description:
 #     None
-# Required: False
-#     None
+# Required:
+#     False
 # Examples:
 #     None
 flamenco_storage: '{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/storage'
@@ -315,8 +325,8 @@ flamenco_storage: '{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/storage'
 # Type: <class 'pathlib.Path'>
 # Description:
 #     None
-# Required: False
-#     None
+# Required:
+#     False
 # Examples:
 #     None
 flamenco_shared_storage: '{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/shared_storage'
@@ -537,4 +547,4 @@ Currently, the following Python interpreters are enabled for testing:
 
 ***
 
-Last changed: **2025-12-23 12:51:24 UTC**
+Last changed: **2025-12-23 12:53:59 UTC**
