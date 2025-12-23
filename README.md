@@ -330,9 +330,6 @@ flamenco_storage: '{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/storage'
 # Examples:
 #     None
 flamenco_shared_storage: '{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/shared_storage'
-
-
-
 ```
 
 ***
@@ -547,4 +544,4 @@ Currently, the following Python interpreters are enabled for testing:
 
 ***
 
-Last changed: **2025-12-23 13:34:59 UTC**
+Last changed: **2025-12-23 13:37:19 UTC**
