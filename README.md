@@ -6,6 +6,7 @@
    1. [Brief](#brief)
    2. [Install](#install)
    3. [Configure](#configure)
+      1. [Default Configuration](#default-configuration)
 2. [External Resources](#external-resources)
    1. [Quickstart](#quickstart)
    2. [Help](#help)
@@ -78,9 +79,11 @@ A local config store location will be created if it doesn't exist, together with
 
 The following settings are available in `OpenStudioLandscapes-Flamenco` and are based on [`OpenStudioLandscapes-Flamenco/tree/main/OpenStudioLandscapes/Flamenco/config/models.py`](https://github.com/michimussato/OpenStudioLandscapes-Flamenco/tree/main/OpenStudioLandscapes/Flamenco/config/models.py).
 
+### Default Configuration
+
 
 <details>
-<summary>Default Configuration (click to expand)</summary>
+<summary(click to expand)</summary>
 
 
 ```yaml
@@ -476,4 +479,4 @@ To follow up on the previous LinkedIn publications, visit:
 
 ***
 
-Last changed: **2025-12-26 10:47:40 UTC**
+Last changed: **2025-12-26 10:53:07 UTC**
