@@ -161,15 +161,11 @@ def build_docker_image(
         # {auto_generated}
         # {dagster_url}
         # Credits: https://io.t-k-f.ch/Flamenco/Flamenco-Manager
-        FROM alpine:latest AS {image_name}
+        
+        ################################################################################
+        # Multi Stage: Stage 1
+        FROM alpine:latest AS builder
         LABEL authors="{AUTHOR}"
-
-        # ARG DEBIAN_FRONTEND=noninteractive
-
-        # ENV CONTAINER_TIMEZONE={TIMEZONE}
-        # ENV SET_CONTAINER_TIMEZONE=true
-
-        # SHELL ["/bin/bash", "-c"]
 
         ENV FLAMENCO_URL={flamenco_version}
         
@@ -181,14 +177,17 @@ def build_docker_image(
             && chmod +x /app/tools/ffmpeg-linux-amd64 \
             && chmod +x /app/flamenco-manager \
             && chmod +x /app/flamenco-worker
-            
-        FROM scratch
+        
+        ################################################################################
+        # Multi Stage: Stage 2
+        FROM scratch AS {image_name}
+        LABEL authors="{AUTHOR}"
         
         WORKDIR /app
         
-        COPY --from={image_name} /app/tools/ffmpeg-linux-amd64 /app/tools/ffmpeg-linux-amd64
-        COPY --from={image_name} /app/flamenco-manager /app/flamenco-manager
-        COPY --from={image_name} /app/flamenco-worker /app/flamenco-worker
+        COPY --from=builder /app/tools/ffmpeg-linux-amd64 /app/tools/ffmpeg-linux-amd64
+        COPY --from=builder /app/flamenco-manager /app/flamenco-manager
+        COPY --from=builder /app/flamenco-worker /app/flamenco-worker
 
         ENTRYPOINT []\
 """
