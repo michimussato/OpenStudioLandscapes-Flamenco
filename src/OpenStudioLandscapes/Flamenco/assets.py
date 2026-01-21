@@ -165,7 +165,8 @@ def build_docker_image(
         
         ################################################################################
         # Multi Stage: Stage 1
-        FROM alpine:latest AS builder
+        # FROM alpine:latest AS builder  # Results in inaccessible shell session
+        FROM {parent_image} AS builder
         LABEL authors="{AUTHOR}"
 
         ENV FLAMENCO_URL={flamenco_version}
@@ -181,7 +182,7 @@ def build_docker_image(
         
         ################################################################################
         # Multi Stage: Stage 2
-        FROM scratch AS {image_name}
+        FROM {parent_image} AS {image_name}
         LABEL authors="{AUTHOR}"
         
         WORKDIR /app
