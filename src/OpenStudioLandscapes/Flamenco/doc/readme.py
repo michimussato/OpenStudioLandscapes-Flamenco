@@ -19,23 +19,17 @@ def readme_feature(
 
     doc.add_paragraph(
         snakemd.Inline(
-            text=textwrap.dedent(
-                """\
+            text=textwrap.dedent("""\
                 Logo Flamenco\
-                """
-            ),
+                """),
             image="https://flamenco.blender.org/brand.svg",
             link="https://flamenco.blender.org/",
         ).__str__()
     )
 
-    doc.add_paragraph(
-        text=textwrap.dedent(
-            """\
+    doc.add_paragraph(text=textwrap.dedent("""\
             Official Flamenco information.\
-            """
-        )
-    )
+            """))
 
     doc.add_heading(
         text="Quickstart",
@@ -53,24 +47,18 @@ def readme_feature(
         level=2,
     )
 
-    doc.add_paragraph(
-        text=textwrap.dedent(
-            """\
+    doc.add_paragraph(text=textwrap.dedent("""\
             Remember to add flamenco-manager FQDN to
             your local DNS server for the worker to be able
             to find it by.\
-            """
-        )
-    )
+            """))
 
     doc.add_heading(
         text="Manager",
         level=3,
     )
 
-    doc.add_code(
-        textwrap.dedent(
-            """\
+    doc.add_code(textwrap.dedent("""\
             ./flamenco-manager --help                                                                                                                                                                                                              ✔ 
             2025-10-29T13:04:02+01:00 INF starting Flamenco arch=amd64 git=72c1bad4 os=linux osDetail="Manjaro Linux (6.16.8-1-MANJARO)" releaseCycle=release version=3.7
             Usage of ./flamenco-manager:
@@ -90,9 +78,7 @@ def readme_feature(
                     Shows the application version, then exits.
               -write-config
                     Writes configuration to flamenco-manager.yaml, then exits.\
-"""
-        )
-    )
+"""))
 
     doc.add_unordered_list(
         [
@@ -105,9 +91,7 @@ def readme_feature(
         level=3,
     )
 
-    doc.add_code(
-        textwrap.dedent(
-            """\
+    doc.add_code(textwrap.dedent("""\
             ./flamenco-worker --help                                                                                                                                                                                                               ✔ 
             Usage of ./flamenco-worker:
               -debug
@@ -128,9 +112,7 @@ def readme_feature(
                     Enable trace-level logging.
               -version
                     Shows the application version, then exits.\
-"""
-        )
-    )
+"""))
 
     doc.add_unordered_list(
         [
@@ -138,9 +120,7 @@ def readme_feature(
         ]
     )
 
-    doc.add_code(
-        textwrap.dedent(
-            """\
+    doc.add_code(textwrap.dedent("""\
             ./flamenco-worker -manager flamenco-manager.openstudiolandscapes.lan:8484                                                                                                                                                              ✔ 
             2025-10-29T15:30:42+01:00 INF starting Flamenco Worker arch=amd64 git=72c1bad4 os=linux osDetail="Manjaro Linux (6.16.8-1-MANJARO)" pid=625742 releaseCycle=release version=3.7
             2025-10-29T15:30:42+01:00 INF will load configuration from these paths credentials=/home/michael/.local/share/flamenco/flamenco-worker-credentials.yaml main=/home/michael/Downloads/flamenco-3.7-linux-amd64/flamenco-worker.yaml
@@ -160,9 +140,7 @@ def readme_feature(
             ^C2025-10-29T15:30:49+01:00 INF signal received, shutting down. signal=interrupt
             2025-10-29T15:30:49+01:00 INF signing off at Manager state=offline
             2025-10-29T15:30:49+01:00 WRN shutdown complete, stopping process.\
-"""
-        )
-    )
+"""))
 
     doc.add_horizontal_rule()
 
