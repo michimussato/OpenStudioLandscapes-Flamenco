@@ -2,17 +2,19 @@ project:
   description: Flamenco Feature for OpenStudioLandscapes
   name: OpenStudioLandscapes-Flamenco
   optional-dependencies:
+    optional-base:
+    - OpenStudioLandscapes @ git+https://github.com/michimussato/OpenStudioLandscapes.git
     dev:
-    - OpenStudioLandscapes-Flamenco[testing]
     - OpenStudioLandscapes-Flamenco[lint]
-    - OpenStudioLandscapes-Flamenco[nox]
     - OpenStudioLandscapes-Flamenco[sbom]
-    - OpenStudioLandscapes-Flamenco[coverage]
     - OpenStudioLandscapes-Flamenco[readme]
-    nox:
-    - OpenStudioLandscapes-Flamenco[testing]
+    lint:
+    - OpenStudioLandscapes-Flamenco[optional-base]
+    readme:
+    - OpenStudioLandscapes-Flamenco[optional-base]
     sbom:
     - OpenStudioLandscapes-Flamenco[graphviz]
+    - OpenStudioLandscapes-Flamenco[optional-base]
   urls:
     Homepage: https://github.com/michimussato/OpenStudioLandscapes-Flamenco
 tool:
