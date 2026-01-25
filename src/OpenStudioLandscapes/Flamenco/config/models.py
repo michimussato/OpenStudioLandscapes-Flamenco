@@ -67,7 +67,7 @@ class Config(FeatureBaseModel):
             raise KeyError("`env` is `None`.")
         LOGGER.debug(f"Expanding {self.flamenco_storage}...")
         ret = pathlib.Path(
-            self.flamenco_storage.expanduser()
+            self.flamenco_storage.expanduser()  # pylint: disable=E1101
             .as_posix()
             .format(
                 **{
@@ -86,7 +86,7 @@ class Config(FeatureBaseModel):
 
         LOGGER.debug(f"Expanding {self.flamenco_shared_storage}...")
         ret = pathlib.Path(
-            self.flamenco_shared_storage.expanduser()
+            self.flamenco_shared_storage.expanduser()  # pylint: disable=E1101
             .as_posix()
             .format(
                 **{
