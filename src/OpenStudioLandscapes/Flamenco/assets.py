@@ -455,9 +455,12 @@ def compose_flamenco(
         )
 
     volumes_dict = {
-        "volumes": [
-            *_volume_relative,
-        ],
+        "volumes": list(
+            {
+                *_volume_relative,
+                *config_engine.global_bind_volumes,
+            }
+        ),
     }
 
     command = [
@@ -496,6 +499,9 @@ def compose_flamenco(
                 **copy.deepcopy(volumes_dict),
                 **copy.deepcopy(network_dict),
                 **copy.deepcopy(ports_dict),
+                "environment": {
+                    **config_engine.global_environment_variables,
+                },
                 # "environment": {
                 # },
                 # "healthcheck": {
