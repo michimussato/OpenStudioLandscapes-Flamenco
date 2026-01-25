@@ -283,14 +283,12 @@ def compose_networks(
             AssetKey([*ASSET_HEADER["key_prefix"], "CONFIG"]),
         ),
     },
-    description=textwrap.dedent(
-        """
+    description=textwrap.dedent("""
         Help on `flamenco-manager.yaml`:
         - [Shared Storage](https://flamenco.blender.org/usage/shared-storage/)
         - [Variables](https://flamenco.blender.org/usage/variables/)
         - [Manager Configuration](https://flamenco.blender.org/usage/manager-configuration/)
-        """
-    ),
+        """),
 )
 def flamenco_manager_yaml(
     context: AssetExecutionContext,

@@ -50,14 +50,12 @@ src/OpenStudioLandscapes/Flamenco/config/models.py:20:4: C0103: Class constant n
 src/OpenStudioLandscapes/Flamenco/config/models.py:23:4: C0103: Class constant name "version_3_8" doesn't conform to UPPER_CASE naming style (invalid-name)
 src/OpenStudioLandscapes/Flamenco/config/models.py:28:0: C0115: Missing class docstring (missing-class-docstring)
 src/OpenStudioLandscapes/Flamenco/config/models.py:64:4: C0116: Missing function or method docstring (missing-function-docstring)
-src/OpenStudioLandscapes/Flamenco/config/models.py:70:12: E1101: Instance of 'FieldInfo' has no 'expanduser' member (no-member)
 src/OpenStudioLandscapes/Flamenco/config/models.py:82:4: C0116: Missing function or method docstring (missing-function-docstring)
-src/OpenStudioLandscapes/Flamenco/config/models.py:89:12: E1101: Instance of 'FieldInfo' has no 'expanduser' member (no-member)
 ************* Module OpenStudioLandscapes.Flamenco.doc.readme
 src/OpenStudioLandscapes/Flamenco/doc/readme.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 src/OpenStudioLandscapes/Flamenco/doc/readme.py:6:0: C0116: Missing function or method docstring (missing-function-docstring)
 src/OpenStudioLandscapes/Flamenco/doc/readme.py:21:8: C2801: Unnecessarily calls dunder method __str__. Use str built-in function. (unnecessary-dunder-call)
 
 ------------------------------------------------------------------
-Your code has been rated at 6.74/10 (previous run: 4.72/10, +2.02)
+Your code has been rated at 7.28/10 (previous run: 6.11/10, +1.17)
 

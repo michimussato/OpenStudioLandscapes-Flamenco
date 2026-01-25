@@ -598,19 +598,6 @@
         "message-id": "C0116"
     },
     {
-        "type": "error",
-        "module": "OpenStudioLandscapes.Flamenco.config.models",
-        "obj": "Config.flamenco_storage_expanded",
-        "line": 70,
-        "column": 12,
-        "endLine": 70,
-        "endColumn": 44,
-        "path": "src/OpenStudioLandscapes/Flamenco/config/models.py",
-        "symbol": "no-member",
-        "message": "Instance of 'FieldInfo' has no 'expanduser' member",
-        "message-id": "E1101"
-    },
-    {
         "type": "convention",
         "module": "OpenStudioLandscapes.Flamenco.config.models",
         "obj": "Config.flamenco_shared_storage_expanded",
@@ -622,19 +609,6 @@
         "symbol": "missing-function-docstring",
         "message": "Missing function or method docstring",
         "message-id": "C0116"
-    },
-    {
-        "type": "error",
-        "module": "OpenStudioLandscapes.Flamenco.config.models",
-        "obj": "Config.flamenco_shared_storage_expanded",
-        "line": 89,
-        "column": 12,
-        "endLine": 89,
-        "endColumn": 51,
-        "path": "src/OpenStudioLandscapes/Flamenco/config/models.py",
-        "symbol": "no-member",
-        "message": "Instance of 'FieldInfo' has no 'expanduser' member",
-        "message-id": "E1101"
     },
     {
         "type": "convention",
