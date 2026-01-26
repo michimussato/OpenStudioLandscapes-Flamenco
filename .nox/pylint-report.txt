@@ -39,23 +39,22 @@ src/OpenStudioLandscapes/Flamenco/__init__.py:6:5: W0511: TODO: Import directly 
 src/OpenStudioLandscapes/Flamenco/__init__.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 src/OpenStudioLandscapes/Flamenco/__init__.py:1:0: C0103: Module name "Flamenco" doesn't conform to snake_case naming style (invalid-name)
 ************* Module OpenStudioLandscapes.Flamenco.config.models
-src/OpenStudioLandscapes/Flamenco/config/models.py:44:5: W0511: Todo (fixme)
-src/OpenStudioLandscapes/Flamenco/config/models.py:51:5: W0511: Todo (fixme)
+src/OpenStudioLandscapes/Flamenco/config/models.py:43:5: W0511: Todo (fixme)
+src/OpenStudioLandscapes/Flamenco/config/models.py:50:5: W0511: Todo (fixme)
 src/OpenStudioLandscapes/Flamenco/config/models.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 src/OpenStudioLandscapes/Flamenco/config/models.py:13:0: C0413: Import "from OpenStudioLandscapes.engine.config.models import FeatureBaseModel" should be placed at the top of the module (wrong-import-position)
-src/OpenStudioLandscapes/Flamenco/config/models.py:14:0: C0413: Import "from OpenStudioLandscapes.engine.config.str_gen import get_config_str" should be placed at the top of the module (wrong-import-position)
-src/OpenStudioLandscapes/Flamenco/config/models.py:16:0: C0413: Import "from OpenStudioLandscapes.Flamenco import constants, dist" should be placed at the top of the module (wrong-import-position)
-src/OpenStudioLandscapes/Flamenco/config/models.py:19:0: C0115: Missing class docstring (missing-class-docstring)
-src/OpenStudioLandscapes/Flamenco/config/models.py:20:4: C0103: Class constant name "version_3_7" doesn't conform to UPPER_CASE naming style (invalid-name)
-src/OpenStudioLandscapes/Flamenco/config/models.py:23:4: C0103: Class constant name "version_3_8" doesn't conform to UPPER_CASE naming style (invalid-name)
-src/OpenStudioLandscapes/Flamenco/config/models.py:28:0: C0115: Missing class docstring (missing-class-docstring)
-src/OpenStudioLandscapes/Flamenco/config/models.py:64:4: C0116: Missing function or method docstring (missing-function-docstring)
-src/OpenStudioLandscapes/Flamenco/config/models.py:82:4: C0116: Missing function or method docstring (missing-function-docstring)
+src/OpenStudioLandscapes/Flamenco/config/models.py:15:0: C0413: Import "from OpenStudioLandscapes.Flamenco import constants, dist" should be placed at the top of the module (wrong-import-position)
+src/OpenStudioLandscapes/Flamenco/config/models.py:18:0: C0115: Missing class docstring (missing-class-docstring)
+src/OpenStudioLandscapes/Flamenco/config/models.py:19:4: C0103: Class constant name "version_3_7" doesn't conform to UPPER_CASE naming style (invalid-name)
+src/OpenStudioLandscapes/Flamenco/config/models.py:22:4: C0103: Class constant name "version_3_8" doesn't conform to UPPER_CASE naming style (invalid-name)
+src/OpenStudioLandscapes/Flamenco/config/models.py:27:0: C0115: Missing class docstring (missing-class-docstring)
+src/OpenStudioLandscapes/Flamenco/config/models.py:63:4: C0116: Missing function or method docstring (missing-function-docstring)
+src/OpenStudioLandscapes/Flamenco/config/models.py:81:4: C0116: Missing function or method docstring (missing-function-docstring)
 ************* Module OpenStudioLandscapes.Flamenco.doc.readme
 src/OpenStudioLandscapes/Flamenco/doc/readme.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 src/OpenStudioLandscapes/Flamenco/doc/readme.py:6:0: C0116: Missing function or method docstring (missing-function-docstring)
 src/OpenStudioLandscapes/Flamenco/doc/readme.py:21:8: C2801: Unnecessarily calls dunder method __str__. Use str built-in function. (unnecessary-dunder-call)
 
 ------------------------------------------------------------------
-Your code has been rated at 7.28/10 (previous run: 6.11/10, +1.17)
+Your code has been rated at 7.32/10 (previous run: 6.14/10, +1.18)
 
