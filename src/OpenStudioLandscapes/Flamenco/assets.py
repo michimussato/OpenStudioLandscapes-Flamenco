@@ -315,11 +315,15 @@ def flamenco_manager_yaml(
         
         _meta:
           version: 3
+          
+        # Core Settings
         manager_name: OpenStudioLandscapes-Flamenco
         database: "/app/flamenco-manager-storage/flamenco-manager.sqlite"
         database_check_period: 10m0s
         listen: :{flamenco_manager_port_container}
         autodiscoverable: true
+        
+        # Storage
         local_manager_storage_path: "/app/flamenco-manager-storage"
         shared_storage_path: "/app/flamenco-manager-storage-shared"
         shaman:
@@ -328,10 +332,14 @@ def flamenco_manager_yaml(
             period: 24h0m0s
             maxAge: 744h0m0s
             extraCheckoutPaths: []
+        
+        # Timeout & Failures
         task_timeout: 10m0s
         worker_timeout: 1m0s
         blocklist_threshold: 3
         task_fail_after_softfail_count: 3
+        
+        # MQTT Configuration
         mqtt:
           client:
             broker: ""
@@ -339,25 +347,31 @@ def flamenco_manager_yaml(
             topic_prefix: flamenco
             username: ""
             password: ""
+            
+        # Variables
         variables:
           blender:
             values:
             - audience: all
               platform: linux
-              value: blender
+              value: {flamenco_variables_blender_platform_linux}
             - audience: all
               platform: windows
-              value: blender.exe
+              value: {flamenco_variables_blender_platform_windows}
             - audience: all
               platform: darwin
-              value: blender
+              value: {flamenco_variables_blender_platform_darwin}
           blenderArgs:
             values:
             - audience: all
               platform: all
-              value: -b -y\
+              value: {flamenco_variables_blender_commandline_args}\
         """).format(
-        flamenco_manager_port_container=CONFIG.flamenco_manager_port_container
+        flamenco_manager_port_container=CONFIG.flamenco_manager_port_container,
+        flamenco_variables_blender_platform_linux=CONFIG.flamenco_variables_blender_platform_linux.as_posix(),
+        flamenco_variables_blender_platform_windows=CONFIG.flamenco_variables_blender_platform_windows.as_posix(),
+        flamenco_variables_blender_platform_darwin=CONFIG.flamenco_variables_blender_platform_darwin.as_posix(),
+        flamenco_variables_blender_commandline_args=" ".join(CONFIG.flamenco_variables_blender_commandline_args),
     )
 
     docker_yaml = yaml.safe_load(flamenco_manager_yaml_str)
