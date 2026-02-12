@@ -22,6 +22,9 @@ class FlamencoArchives(enum.StrEnum):
     version_3_8 = (
         "https://flamenco.blender.org/downloads/flamenco-3.8-linux-amd64.tar.gz"
     )
+    version_3_8_2 = (
+        "https://flamenco.blender.org/downloads/flamenco-3.8.2-linux-amd64.tar.gz"
+    )
 
 
 class Config(FeatureBaseModel):
@@ -43,7 +46,7 @@ class Config(FeatureBaseModel):
     # Todo
     # - [ ] Tuple?
     flamenco_version: FlamencoArchives = Field(
-        default=FlamencoArchives.version_3_7,
+        default=FlamencoArchives.version_3_8_2,
         examples=[i.name for i in FlamencoArchives],
     )
 
