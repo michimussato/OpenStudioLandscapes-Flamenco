@@ -3,6 +3,15 @@ import textwrap
 import snakemd
 
 
+"""
+Known Issues:
+v3.7 with Blender 5.0.1
+- Error performing BAT pack: invalid pointer size b'1': /tmp/tmpn2eftp8n
+- https://projects.blender.org/studio/flamenco/issues/104455
+
+"""
+
+
 def readme_feature(
     doc: snakemd.Document,
     main_header: str,
@@ -30,6 +39,12 @@ def readme_feature(
     doc.add_paragraph(text=textwrap.dedent("""\
             Official Flamenco information.\
             """))
+
+    doc.add_unordered_list(
+        [
+            "[Flamenco Chat](https://chat.blender.org/#/room/#flamenco:blender.org)",
+        ]
+    )
 
     doc.add_heading(
         text="Quickstart",
