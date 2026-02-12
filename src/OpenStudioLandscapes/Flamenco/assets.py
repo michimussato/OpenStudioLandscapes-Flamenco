@@ -449,9 +449,9 @@ def compose_flamenco(
 
     volumes_dict = {
         "volumes": [
+            f"{flamenco_manager_yaml.as_posix()}:/app/flamenco-manager.yaml:ro",
             f"{storage.as_posix()}:/app/flamenco-manager-storage:rw",
             f"{shared_storage.as_posix()}:/app/flamenco-manager-storage-shared:rw",
-            f"{flamenco_manager_yaml.as_posix()}:/app/flamenco-manager.yaml:ro",
         ],
     }
 
