@@ -9,7 +9,8 @@
       1. [Default Configuration](#default-configuration)
 2. [External Resources](#external-resources)
    1. [Quickstart](#quickstart)
-   2. [Help](#help)
+   2. [Topology](#topology)
+   3. [Help](#help)
       1. [Manager](#manager)
       2. [Worker](#worker)
 3. [Community](#community)
@@ -336,8 +337,8 @@ flamenco_manager_port_container: 8080
 # Required:
 #     False
 # Examples:
-#     ['version_3_7', 'version_3_8']
-flamenco_version: https://flamenco.blender.org/downloads/flamenco-3.7-linux-amd64.tar.gz
+#     ['version_3_7', 'version_3_8', 'version_3_8_2']
+flamenco_version: https://flamenco.blender.org/downloads/flamenco-3.8.2-linux-amd64.tar.gz
 
 
 # ================
@@ -366,6 +367,64 @@ flamenco_storage: '{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/storage'
 # Examples:
 #     None
 flamenco_shared_storage: '{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/shared_storage'
+
+
+# =========================================
+# flamenco_variables_blender_platform_linux
+# -----------------------------------------
+#
+# Type: <class 'pathlib.Path'>
+# Description:
+#     Path to the Linux Blender executable. More info: https://flamenco.blender.org/usage/variables/blender/
+# Required:
+#     False
+# Examples:
+#     None
+flamenco_variables_blender_platform_linux: blender
+
+
+# ===========================================
+# flamenco_variables_blender_platform_windows
+# -------------------------------------------
+#
+# Type: <class 'pathlib.Path'>
+# Description:
+#     Path to the Windows Blender executable. More info: https://flamenco.blender.org/usage/variables/blender/
+# Required:
+#     False
+# Examples:
+#     None
+flamenco_variables_blender_platform_windows: blender.exe
+
+
+# ==========================================
+# flamenco_variables_blender_platform_darwin
+# ------------------------------------------
+#
+# Type: <class 'pathlib.Path'>
+# Description:
+#     Path to the Darwin Blender executable. More info: https://flamenco.blender.org/usage/variables/blender/
+# Required:
+#     False
+# Examples:
+#     None
+flamenco_variables_blender_platform_darwin: blender
+
+
+# ===========================================
+# flamenco_variables_blender_commandline_args
+# -------------------------------------------
+#
+# Type: typing.List[str]
+# Description:
+#     Command line arguments passed to blender. More info: https://docs.blender.org/manual/en/latest/advanced/command_line/arguments.html
+# Required:
+#     False
+# Examples:
+#     None
+flamenco_variables_blender_commandline_args:
+- --background
+- --enable-autoexec
 ```
 
 
@@ -380,9 +439,20 @@ flamenco_shared_storage: '{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/shared_storage'
 
 Official Flamenco information.
 
+- [Flamenco Chat](https://chat.blender.org/#/room/#flamenco:blender.org)
+- [Flamenco Codebase](https://projects.blender.org/studio/flamenco)
+
 ## Quickstart
 
 - [Quickstart](https://flamenco.blender.org/usage/quickstart/)
+
+## Topology
+
+![Flamenco Topology ](media/images/topology.png)
+
+Source:
+
+- [Blender Studio - Installing Flamenco in 5 minutes](https://www.youtube.com/watch?v=O728EFaXuBk)
 
 ## Help
 
@@ -495,4 +565,4 @@ To follow up on the previous LinkedIn publications, visit:
 
 ***
 
-Last changed: **2026-01-27 20:29:26 UTC**
+Last changed: **2026-02-14 08:44:46 UTC**
