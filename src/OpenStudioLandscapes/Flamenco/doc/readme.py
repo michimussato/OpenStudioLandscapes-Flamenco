@@ -43,6 +43,7 @@ def readme_feature(
     doc.add_unordered_list(
         [
             "[Flamenco Chat](https://chat.blender.org/#/room/#flamenco:blender.org)",
+            "[Flamenco Codebase](https://projects.blender.org/studio/flamenco)",
         ]
     )
 
@@ -54,6 +55,31 @@ def readme_feature(
     doc.add_unordered_list(
         [
             "[Quickstart](https://flamenco.blender.org/usage/quickstart/)",
+        ]
+    )
+
+    doc.add_heading(
+        text="Topology",
+        level=2,
+    )
+
+    doc.add_paragraph(
+        snakemd.Inline(
+            text=textwrap.dedent("""\
+                Flamenco Topology\
+                """),
+            image="media/images/topology.png",
+            # link="https://flamenco.blender.org/",
+        ).__str__()
+    )
+
+    doc.add_paragraph(text=textwrap.dedent("""\
+            Source:\
+            """))
+
+    doc.add_unordered_list(
+        [
+            "[Blender Studio - Installing Flamenco in 5 minutes](https://www.youtube.com/watch?v=O728EFaXuBk)",
         ]
     )
 
