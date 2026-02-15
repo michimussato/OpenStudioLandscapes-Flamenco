@@ -637,7 +637,7 @@ def compose_flamenco(
                 **copy.deepcopy(network_dict),
                 **copy.deepcopy(ports_dict),
                 "environment": {
-                    "TZ": CONFIG.tz,
+                    "TZ": config_engine.tz,
                     **config_engine.global_environment_variables,
                     **CONFIG.local_environment_variables,
                 },
