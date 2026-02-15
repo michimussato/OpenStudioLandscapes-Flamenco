@@ -305,74 +305,190 @@ def flamenco_manager_yaml(
         "flamenco-manager.yaml",
     ).expanduser()
 
-    flamenco_manager_yaml_str = textwrap.dedent("""\
-        # Configuration file for Flamenco.
-        # For an explanation of the fields, refer to flamenco-manager-example.yaml
-        #
-        # NOTE: this file will be overwritten by Flamenco Manager's web-based configuration system.
-        #
-        # This file was written on 2025-10-29 13:10:37 +01:00 by Flamenco 3.7
-        
-        _meta:
-          version: 3
-          
+    # Todo:
+    #  - [ ] Two-Way?
+    #        https://flamenco.blender.org/usage/variables/#two-way-variables-for-mixed-platform-farms
+    #        https://flamenco.blender.org/usage/variables/multi-platform/
+    #        variables:
+    #          my_storage:
+    #            is_twoway: true
+    #            values:
+    #            - platform: linux
+    #              value: /media/shared/flamenco
+    #            - platform: windows
+    #              value: F:\flamenco
+    #            - platform: darwin
+    #              value: /Volumes/shared/flamenco
+
+    # class ShamanDefinition(TypedDict, total=False):
+    #     enabled: bool
+    #     garbageCollect: Dict[str, Union[str, List]]
+    #
+    # class FlamencoManagerYamlDefinition(TypedDict, total=False):
+    #     _meta: Dict[str, int]
+    #
+    #     # Core Settings
+    #     manager_name: str
+    #     database: str
+    #     database_check_period: str
+    #     listen: str
+    #     autodiscoverable: bool
+    #
+    #     # Storage
+    #     local_manager_storage_path: os.PathLike
+    #     shared_storage_path: os.PathLike
+    #     shaman: ShamanDefinition
+
+    flamenco_manager_yaml_dict: Dict = {
+        "_meta": {
+            "version": 3,
+        },
         # Core Settings
-        manager_name: OpenStudioLandscapes-Flamenco
-        database: "/app/flamenco-manager-storage/flamenco-manager.sqlite"
-        database_check_period: 10m0s
-        listen: :{flamenco_manager_port_container}
-        autodiscoverable: true
-        
+        "manager_name": "OpenStudioLandscapes-Flamenco",
+        "database": "/app/flamenco-manager-storage/flamenco-manager.sqlite",
+        "database_check_period": "10m0s",
+        "listen": f":{CONFIG.flamenco_manager_port_container}",
+        "autodiscoverable": True,
         # Storage
-        local_manager_storage_path: "/app/flamenco-manager-storage"
-        shared_storage_path: "/app/flamenco-manager-storage-shared"
-        shaman:
-          enabled: true
-          garbageCollect:
-            period: 24h0m0s
-            maxAge: 744h0m0s
-            extraCheckoutPaths: []
-        
+        "local_manager_storage_path": "/app/flamenco-manager-storage",
+        "shared_storage_path": "/app/flamenco-manager-storage-shared",
+        "shaman": {
+            "enabled": True,
+            "garbageCollect": {
+                "period": "24h0m0s",
+                "maxAge": "744h0m0s",
+                "extraCheckoutPaths": [],
+            },
+        },
         # Timeout & Failures
-        task_timeout: 10m0s
-        worker_timeout: 1m0s
-        blocklist_threshold: 3
-        task_fail_after_softfail_count: 3
-        
+        "task_timeout": "10m0s",
+        "worker_timeout": "1m0s",
+        "blocklist_threshold": 3,
+        "task_fail_after_softfail_count": 3,
         # MQTT Configuration
-        mqtt:
-          client:
-            broker: ""
-            clientID: flamenco
-            topic_prefix: flamenco
-            username: ""
-            password: ""
-            
+        "mqtt": {
+            "client": {
+                "broker": "",
+                "clientID": "flamenco",
+                "topic_prefix": "flamenco",
+                "username": "",
+                "password": "",
+            },
+        },
         # Variables
-        variables:
-          blender:
-            values:
-            - audience: all
-              platform: linux
-              value: {flamenco_variables_blender_platform_linux}
-            - audience: all
-              platform: windows
-              value: {flamenco_variables_blender_platform_windows}
-            - audience: all
-              platform: darwin
-              value: {flamenco_variables_blender_platform_darwin}
-          blenderArgs:
-            values:
-            - audience: all
-              platform: all
-              value: {flamenco_variables_blender_commandline_args}\
-        """).format(
-        flamenco_manager_port_container=CONFIG.flamenco_manager_port_container,
-        flamenco_variables_blender_platform_linux=CONFIG.flamenco_variables_blender_platform_linux.as_posix(),
-        flamenco_variables_blender_platform_windows=CONFIG.flamenco_variables_blender_platform_windows.as_posix(),
-        flamenco_variables_blender_platform_darwin=CONFIG.flamenco_variables_blender_platform_darwin.as_posix(),
-        flamenco_variables_blender_commandline_args=" ".join(CONFIG.flamenco_variables_blender_commandline_args),
-    )
+        "variables": {
+            "blender": {
+                "values": [
+                    # {
+                    #     "audience": "",
+                    #     "platform": "",
+                    #     "value": "",
+                    # },
+                    {
+                        "audience": "all",
+                        "platform": "linux",
+                        "value": CONFIG.flamenco_variables_blender_platform_linux.as_posix(),
+                    },
+                    {
+                        "audience": "all",
+                        "platform": "windows",
+                        "value": CONFIG.flamenco_variables_blender_platform_windows.as_posix(),
+                    },
+                    {
+                        "audience": "all",
+                        "platform": "darwin",
+                        "value": CONFIG.flamenco_variables_blender_platform_darwin.as_posix(),
+                    },
+                ],
+            },
+            "blenderArg": {
+                "values": [
+                    # {
+                    #     "audience": "",
+                    #     "platform": "",
+                    #     "value": "",
+                    # },
+                    {
+                        "audience": "all",
+                        "platform": "all",
+                        "value": " ".join(CONFIG.flamenco_variables_blender_commandline_args),
+                    },
+                ],
+            },
+        },
+    }
+
+    flamenco_manager_yaml_str = yaml.dump(flamenco_manager_yaml_dict)
+
+    # flamenco_manager_yaml_str = textwrap.dedent("""\
+    #     # Configuration file for Flamenco.
+    #     # For an explanation of the fields, refer to flamenco-manager-example.yaml
+    #     #
+    #     # NOTE: this file will be overwritten by Flamenco Manager's web-based configuration system.
+    #     #
+    #     # Todo:
+    #     #  - [ ] Update: This file was written on 2025-10-29 13:10:37 +01:00 by Flamenco 3.7
+    #
+    #     _meta:
+    #       version: 3
+    #
+    #     # Core Settings
+    #     manager_name: OpenStudioLandscapes-Flamenco
+    #     database: "/app/flamenco-manager-storage/flamenco-manager.sqlite"
+    #     database_check_period: 10m0s
+    #     listen: :{flamenco_manager_port_container}
+    #     autodiscoverable: true
+    #
+    #     # Storage
+    #     local_manager_storage_path: "/app/flamenco-manager-storage"
+    #     shared_storage_path: "/app/flamenco-manager-storage-shared"
+    #     shaman:
+    #       enabled: true
+    #       garbageCollect:
+    #         period: 24h0m0s
+    #         maxAge: 744h0m0s
+    #         extraCheckoutPaths: []
+    #
+    #     # Timeout & Failures
+    #     task_timeout: 10m0s
+    #     worker_timeout: 1m0s
+    #     blocklist_threshold: 3
+    #     task_fail_after_softfail_count: 3
+    #
+    #     # MQTT Configuration
+    #     mqtt:
+    #       client:
+    #         broker: ""
+    #         clientID: flamenco
+    #         topic_prefix: flamenco
+    #         username: ""
+    #         password: ""
+    #
+    #     # Variables
+    #     variables:
+    #       blender:
+    #         values:
+    #         - audience: all
+    #           platform: linux
+    #           value: {flamenco_variables_blender_platform_linux}
+    #         - audience: all
+    #           platform: windows
+    #           value: {flamenco_variables_blender_platform_windows}
+    #         - audience: all
+    #           platform: darwin
+    #           value: {flamenco_variables_blender_platform_darwin}
+    #       blenderArgs:
+    #         values:
+    #         - audience: all
+    #           platform: all
+    #           value: {flamenco_variables_blender_commandline_args}\
+    #     """).format(
+    #     flamenco_manager_port_container=CONFIG.flamenco_manager_port_container,
+    #     flamenco_variables_blender_platform_linux=CONFIG.flamenco_variables_blender_platform_linux.as_posix(),
+    #     flamenco_variables_blender_platform_windows=CONFIG.flamenco_variables_blender_platform_windows.as_posix(),
+    #     flamenco_variables_blender_platform_darwin=CONFIG.flamenco_variables_blender_platform_darwin.as_posix(),
+    #     flamenco_variables_blender_commandline_args=" ".join(CONFIG.flamenco_variables_blender_commandline_args),
+    # )
 
     docker_yaml = yaml.safe_load(flamenco_manager_yaml_str)
 
@@ -521,6 +637,7 @@ def compose_flamenco(
                 **copy.deepcopy(network_dict),
                 **copy.deepcopy(ports_dict),
                 "environment": {
+                    "TZ": CONFIG.tz,
                     **config_engine.global_environment_variables,
                     **CONFIG.local_environment_variables,
                 },
