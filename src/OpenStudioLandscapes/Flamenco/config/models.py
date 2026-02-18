@@ -64,17 +64,17 @@ class Config(FeatureBaseModel):
     flamenco_variables_blender_platform_linux: pathlib.Path = Field(
         default=pathlib.Path("blender"),
         description="Path to the Linux Blender executable. More info: "
-                    "https://flamenco.blender.org/usage/variables/blender/",
+        "https://flamenco.blender.org/usage/variables/blender/",
     )
     flamenco_variables_blender_platform_windows: pathlib.Path = Field(
         default=pathlib.Path("blender.exe"),
         description="Path to the Windows Blender executable. More info: "
-                    "https://flamenco.blender.org/usage/variables/blender/",
+        "https://flamenco.blender.org/usage/variables/blender/",
     )
     flamenco_variables_blender_platform_darwin: pathlib.Path = Field(
         default=pathlib.Path("blender"),
         description="Path to the Darwin Blender executable. More info: "
-                    "https://flamenco.blender.org/usage/variables/blender/",
+        "https://flamenco.blender.org/usage/variables/blender/",
     )
     flamenco_variables_blender_commandline_args: List[str] = Field(
         default=[
@@ -82,7 +82,7 @@ class Config(FeatureBaseModel):
             "--enable-autoexec",  # https://docs.blender.org/manual/en/latest/advanced/command_line/arguments.html#python-options
         ],
         description="Command line arguments passed to blender. More info: "
-                    "https://docs.blender.org/manual/en/latest/advanced/command_line/arguments.html",
+        "https://docs.blender.org/manual/en/latest/advanced/command_line/arguments.html",
     )
 
     # EXPANDABLE PATHS

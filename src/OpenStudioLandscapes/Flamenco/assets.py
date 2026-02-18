@@ -411,7 +411,9 @@ def flamenco_manager_yaml(
                     {
                         "audience": "all",
                         "platform": "all",
-                        "value": " ".join(CONFIG.flamenco_variables_blender_commandline_args),
+                        "value": " ".join(
+                            CONFIG.flamenco_variables_blender_commandline_args
+                        ),
                     },
                 ],
             },

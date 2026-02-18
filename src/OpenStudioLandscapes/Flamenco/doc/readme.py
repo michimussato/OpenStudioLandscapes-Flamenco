@@ -2,7 +2,6 @@ import textwrap
 
 import snakemd
 
-
 """
 Known Issues:
 v3.7 with Blender 5.0.1
