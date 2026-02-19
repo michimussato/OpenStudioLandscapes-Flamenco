@@ -401,7 +401,7 @@ def flamenco_manager_yaml(
                     },
                 ],
             },
-            "blenderArg": {
+            "blenderArgs": {
                 "values": [
                     # {
                     #     "audience": "",
