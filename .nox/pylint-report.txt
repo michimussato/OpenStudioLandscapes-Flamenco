@@ -58,8 +58,8 @@ src/OpenStudioLandscapes/Flamenco/config/models.py:19:4: C0103: Class constant n
 src/OpenStudioLandscapes/Flamenco/config/models.py:22:4: C0103: Class constant name "version_3_8" doesn't conform to UPPER_CASE naming style (invalid-name)
 src/OpenStudioLandscapes/Flamenco/config/models.py:25:4: C0103: Class constant name "version_3_8_2" doesn't conform to UPPER_CASE naming style (invalid-name)
 src/OpenStudioLandscapes/Flamenco/config/models.py:30:0: C0115: Missing class docstring (missing-class-docstring)
-src/OpenStudioLandscapes/Flamenco/config/models.py:90:4: C0116: Missing function or method docstring (missing-function-docstring)
-src/OpenStudioLandscapes/Flamenco/config/models.py:108:4: C0116: Missing function or method docstring (missing-function-docstring)
+src/OpenStudioLandscapes/Flamenco/config/models.py:92:4: C0116: Missing function or method docstring (missing-function-docstring)
+src/OpenStudioLandscapes/Flamenco/config/models.py:110:4: C0116: Missing function or method docstring (missing-function-docstring)
 ************* Module OpenStudioLandscapes.Flamenco.doc.readme
 src/OpenStudioLandscapes/Flamenco/doc/readme.py:81:0: C0301: Line too long (111/100) (line-too-long)
 src/OpenStudioLandscapes/Flamenco/doc/readme.py:1:0: C0114: Missing module docstring (missing-module-docstring)

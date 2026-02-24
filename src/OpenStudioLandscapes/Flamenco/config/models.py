@@ -82,8 +82,8 @@ class Config(FeatureBaseModel):
             "--enable-autoexec",  # https://docs.blender.org/manual/en/latest/advanced/command_line/arguments.html#python-options
         ],
         description="Command line arguments passed to blender. "
-                    "Original defaults are `-b -y`. "
-                    "More info: "
+        "Original defaults are `-b -y`. "
+        "More info: "
         "https://docs.blender.org/manual/en/latest/advanced/command_line/arguments.html",
     )
 

@@ -430,7 +430,7 @@ flamenco_variables_blender_platform_darwin: blender
 #
 # Type: typing.List[str]
 # Description:
-#     Command line arguments passed to blender. More info: https://docs.blender.org/manual/en/latest/advanced/command_line/arguments.html
+#     Command line arguments passed to blender. Original defaults are `-b -y`. More info: https://docs.blender.org/manual/en/latest/advanced/command_line/arguments.html
 # Required:
 #     False
 # Examples:
@@ -578,4 +578,4 @@ To follow up on the previous LinkedIn publications, visit:
 
 ***
 
-Last changed: **2026-02-18 00:15:24 UTC**
+Last changed: **2026-02-24 11:21:54 UTC**
