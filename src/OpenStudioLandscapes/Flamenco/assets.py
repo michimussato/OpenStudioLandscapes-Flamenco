@@ -173,11 +173,11 @@ def build_docker_image(
         
         WORKDIR /app
         
-        RUN wget "$FLAMENCO_URL" -O flamenco.tar.gz \
-            && tar -xf flamenco.tar.gz --strip-components=1 \
-            && rm flamenco.tar.gz \
-            && chmod +x /app/tools/ffmpeg-linux-amd64 \
-            && chmod +x /app/flamenco-manager \
+        RUN wget "$FLAMENCO_URL" -O flamenco.tar.gz \\
+            && tar -xf flamenco.tar.gz --strip-components=1 \\
+            && rm flamenco.tar.gz \\
+            && chmod +x /app/tools/ffmpeg-linux-amd64 \\
+            && chmod +x /app/flamenco-manager \\
             && chmod +x /app/flamenco-worker
         
         ################################################################################
