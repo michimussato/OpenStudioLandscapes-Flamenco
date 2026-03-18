@@ -6,7 +6,6 @@ from dagster import get_dagster_logger
 from pydantic import (
     Field,
     PositiveInt,
-    BaseModel,
 )
 
 LOGGER = get_dagster_logger(__name__)
@@ -137,7 +136,7 @@ class ManagerConfigs(enum.Enum):
 class Config(FeatureBaseModel):
 
     flamenco_manager_yaml: Dict = Field(
-        default=ManagerConfigs.version_3_8_2,
+        default=ManagerConfigs.version_3_8_2.value,
         description="The flamenco-manager.yaml. See "
                     "https://flamenco.blender.org/usage/manager-configuration/ "
                     "for more information.",
