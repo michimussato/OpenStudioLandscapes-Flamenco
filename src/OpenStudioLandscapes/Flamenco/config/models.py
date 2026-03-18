@@ -1,11 +1,12 @@
 import enum
 import pathlib
-from typing import List
+from typing import List, Dict
 
 from dagster import get_dagster_logger
 from pydantic import (
     Field,
     PositiveInt,
+    BaseModel,
 )
 
 LOGGER = get_dagster_logger(__name__)
@@ -27,7 +28,122 @@ class FlamencoArchives(enum.StrEnum):
     )
 
 
+FLAMENCO_DEFAULT_LISTEN_PORT: int = 8080
+
+
+class ManagerConfig(BaseModel):
+
+    # Todo:
+    #  - [ ] Two-Way?
+    #        https://flamenco.blender.org/usage/variables/#two-way-variables-for-mixed-platform-farms
+    #        https://flamenco.blender.org/usage/variables/multi-platform/
+    #        variables:
+    #          my_storage:
+    #            is_twoway: true
+    #            values:
+    #            - platform: linux
+    #              value: /media/shared/flamenco
+    #            - platform: windows
+    #              value: F:\flamenco
+    #            - platform: darwin
+    #              value: /Volumes/shared/flamenco
+
+    flamenco_manager_3_8_2: Dict = Field(
+        default={
+            "_meta": {
+                "version": 3,
+            },
+            # Core Settings
+            "manager_name": "OpenStudioLandscapes-Flamenco",
+            "database": "/app/flamenco-manager-storage/flamenco-manager.sqlite",
+            "database_check_period": "10m0s",
+            "listen": f":{FLAMENCO_DEFAULT_LISTEN_PORT}",
+            "autodiscoverable": True,
+            # Storage
+            "local_manager_storage_path": "/app/flamenco-manager-storage",
+            "shared_storage_path": "/app/flamenco-manager-storage-shared",
+            "shaman": {
+                "enabled": True,
+                "garbageCollect": {
+                    "period": "24h0m0s",
+                    "maxAge": "744h0m0s",
+                    "extraCheckoutPaths": [],
+                },
+            },
+            # Timeout & Failures
+            "task_timeout": "10m0s",
+            "worker_timeout": "1m0s",
+            "blocklist_threshold": 3,
+            "task_fail_after_softfail_count": 3,
+            # MQTT Configuration
+            "mqtt": {
+                "client": {
+                    "broker": "",
+                    "clientID": "flamenco",
+                    "topic_prefix": "flamenco",
+                    "username": "",
+                    "password": "",
+                },
+            },
+            # Variables
+            "variables": {
+                "blender": {
+                    "values": [
+                        # {
+                        #     "audience": "",
+                        #     "platform": "",
+                        #     "value": "",
+                        # },
+                        {
+                            "audience": "all",
+                            "platform": "linux",
+                            "value": "blender",
+                        },
+                        {
+                            "audience": "all",
+                            "platform": "windows",
+                            "value": "blender.exe",
+                        },
+                        {
+                            "audience": "all",
+                            "platform": "darwin",
+                            "value": "blender",
+                        },
+                    ],
+                },
+                "blenderArgs": {
+                    "values": [
+                        # {
+                        #     "audience": "",
+                        #     "platform": "",
+                        #     "value": "",
+                        # },
+                        {
+                            "audience": "all",
+                            "platform": "all",
+                            "value": " ".join(
+                                [
+                                    "--background",
+                                    "--debug",
+                                    "--enable-autoexec",
+                                ]
+                            ),
+                        },
+                    ],
+                },
+            },
+        }
+    )
+
+
 class Config(FeatureBaseModel):
+
+    flamenco_manager_yaml: Dict = Field(
+        default=ManagerConfig().flamenco_manager_3_8_2,
+        description="The flamenco-manager.yaml. See "
+                    "https://flamenco.blender.org/usage/manager-configuration/ "
+                    "for more information.",
+    )
 
     feature_name: str = dist.name
 
@@ -40,7 +156,7 @@ class Config(FeatureBaseModel):
     )
 
     flamenco_manager_port_container: PositiveInt = Field(
-        default=8080,
+        default=FLAMENCO_DEFAULT_LISTEN_PORT,
     )
 
     # Todo
@@ -59,32 +175,6 @@ class Config(FeatureBaseModel):
 
     flamenco_shared_storage: pathlib.Path = Field(
         default=pathlib.Path("{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/shared_storage"),
-    )
-
-    flamenco_variables_blender_platform_linux: pathlib.Path = Field(
-        default=pathlib.Path("blender"),
-        description="Path to the Linux Blender executable. More info: "
-        "https://flamenco.blender.org/usage/variables/blender/",
-    )
-    flamenco_variables_blender_platform_windows: pathlib.Path = Field(
-        default=pathlib.Path("blender.exe"),
-        description="Path to the Windows Blender executable. More info: "
-        "https://flamenco.blender.org/usage/variables/blender/",
-    )
-    flamenco_variables_blender_platform_darwin: pathlib.Path = Field(
-        default=pathlib.Path("blender"),
-        description="Path to the Darwin Blender executable. More info: "
-        "https://flamenco.blender.org/usage/variables/blender/",
-    )
-    flamenco_variables_blender_commandline_args: List[str] = Field(
-        default=[
-            "--background",  # https://docs.blender.org/manual/en/latest/advanced/command_line/arguments.html#render-options
-            "--enable-autoexec",  # https://docs.blender.org/manual/en/latest/advanced/command_line/arguments.html#python-options
-        ],
-        description="Command line arguments passed to blender. "
-        "Original defaults are `-b -y`. "
-        "More info: "
-        "https://docs.blender.org/manual/en/latest/advanced/command_line/arguments.html",
     )
 
     # EXPANDABLE PATHS
