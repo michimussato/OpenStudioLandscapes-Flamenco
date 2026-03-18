@@ -31,7 +31,7 @@ class FlamencoArchives(enum.StrEnum):
 FLAMENCO_DEFAULT_LISTEN_PORT: int = 8080
 
 
-class ManagerConfig(BaseModel):
+class ManagerConfigs(enum.Enum):
 
     # Todo:
     #  - [ ] Two-Way?
@@ -48,98 +48,96 @@ class ManagerConfig(BaseModel):
     #            - platform: darwin
     #              value: /Volumes/shared/flamenco
 
-    flamenco_manager_3_8_2: Dict = Field(
-        default={
-            "_meta": {
-                "version": 3,
+    version_3_8_2 = {
+        "_meta": {
+            "version": 3,
+        },
+        # Core Settings
+        "manager_name": "OpenStudioLandscapes-Flamenco",
+        "database": pathlib.Path("/app/flamenco-manager-storage/flamenco-manager.sqlite"),
+        "database_check_period": "10m0s",
+        "listen": f":{FLAMENCO_DEFAULT_LISTEN_PORT}",
+        "autodiscoverable": True,
+        # Storage
+        "local_manager_storage_path": pathlib.Path("/app/flamenco-manager-storage"),
+        "shared_storage_path": pathlib.Path("/app/flamenco-manager-storage-shared"),
+        "shaman": {
+            "enabled": True,
+            "garbageCollect": {
+                "period": "24h0m0s",
+                "maxAge": "744h0m0s",
+                "extraCheckoutPaths": [],
             },
-            # Core Settings
-            "manager_name": "OpenStudioLandscapes-Flamenco",
-            "database": "/app/flamenco-manager-storage/flamenco-manager.sqlite",
-            "database_check_period": "10m0s",
-            "listen": f":{FLAMENCO_DEFAULT_LISTEN_PORT}",
-            "autodiscoverable": True,
-            # Storage
-            "local_manager_storage_path": "/app/flamenco-manager-storage",
-            "shared_storage_path": "/app/flamenco-manager-storage-shared",
-            "shaman": {
-                "enabled": True,
-                "garbageCollect": {
-                    "period": "24h0m0s",
-                    "maxAge": "744h0m0s",
-                    "extraCheckoutPaths": [],
-                },
+        },
+        # Timeout & Failures
+        "task_timeout": "10m0s",
+        "worker_timeout": "1m0s",
+        "blocklist_threshold": 3,
+        "task_fail_after_softfail_count": 3,
+        # MQTT Configuration
+        "mqtt": {
+            "client": {
+                "broker": "",
+                "clientID": "flamenco",
+                "topic_prefix": "flamenco",
+                "username": "",
+                "password": "",
             },
-            # Timeout & Failures
-            "task_timeout": "10m0s",
-            "worker_timeout": "1m0s",
-            "blocklist_threshold": 3,
-            "task_fail_after_softfail_count": 3,
-            # MQTT Configuration
-            "mqtt": {
-                "client": {
-                    "broker": "",
-                    "clientID": "flamenco",
-                    "topic_prefix": "flamenco",
-                    "username": "",
-                    "password": "",
-                },
+        },
+        # Variables
+        "variables": {
+            "blender": {
+                "values": [
+                    # {
+                    #     "audience": "",
+                    #     "platform": "",
+                    #     "value": "",
+                    # },
+                    {
+                        "audience": "all",
+                        "platform": "linux",
+                        "value": pathlib.Path("blender"),
+                    },
+                    {
+                        "audience": "all",
+                        "platform": "windows",
+                        "value": pathlib.Path("blender.exe"),
+                    },
+                    {
+                        "audience": "all",
+                        "platform": "darwin",
+                        "value": pathlib.Path("blender"),
+                    },
+                ],
             },
-            # Variables
-            "variables": {
-                "blender": {
-                    "values": [
-                        # {
-                        #     "audience": "",
-                        #     "platform": "",
-                        #     "value": "",
-                        # },
-                        {
-                            "audience": "all",
-                            "platform": "linux",
-                            "value": "blender",
-                        },
-                        {
-                            "audience": "all",
-                            "platform": "windows",
-                            "value": "blender.exe",
-                        },
-                        {
-                            "audience": "all",
-                            "platform": "darwin",
-                            "value": "blender",
-                        },
-                    ],
-                },
-                "blenderArgs": {
-                    "values": [
-                        # {
-                        #     "audience": "",
-                        #     "platform": "",
-                        #     "value": "",
-                        # },
-                        {
-                            "audience": "all",
-                            "platform": "all",
-                            "value": " ".join(
-                                [
-                                    "--background",
-                                    "--debug",
-                                    "--enable-autoexec",
-                                ]
-                            ),
-                        },
-                    ],
-                },
+            "blenderArgs": {
+                "values": [
+                    # {
+                    #     "audience": "",
+                    #     "platform": "",
+                    #     "value": "",
+                    # },
+                    {
+                        "audience": "all",
+                        "platform": "all",
+                        "value": " ".join(
+                            [
+                                "--background",
+                                "--debug",
+                                "--enable-autoexec",
+                            ]
+                        ),
+                    },
+                ],
             },
-        }
-    )
+        },
+    }
 
 
 class Config(FeatureBaseModel):
 
     flamenco_manager_yaml: Dict = Field(
-        default=ManagerConfig().flamenco_manager_3_8_2,
+        default=ManagerConfigs.version_3_8_2,
         description="The flamenco-manager.yaml. See "
                     "https://flamenco.blender.org/usage/manager-configuration/ "
                     "for more information.",
