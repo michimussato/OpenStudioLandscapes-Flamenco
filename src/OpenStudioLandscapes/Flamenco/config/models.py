@@ -1,6 +1,6 @@
 import enum
 import pathlib
-from typing import List, Dict
+from typing import Dict, List
 
 from dagster import get_dagster_logger
 from pydantic import (
@@ -53,7 +53,9 @@ class ManagerConfigs(enum.Enum):
         },
         # Core Settings
         "manager_name": "OpenStudioLandscapes-Flamenco",
-        "database": pathlib.Path("/app/flamenco-manager-storage/flamenco-manager.sqlite"),
+        "database": pathlib.Path(
+            "/app/flamenco-manager-storage/flamenco-manager.sqlite"
+        ),
         "database_check_period": "10m0s",
         "listen": f":{FLAMENCO_DEFAULT_LISTEN_PORT}",
         "autodiscoverable": True,
@@ -138,8 +140,8 @@ class Config(FeatureBaseModel):
     flamenco_manager_yaml: Dict = Field(
         default=ManagerConfigs.version_3_8_2.value,
         description="The flamenco-manager.yaml. See "
-                    "https://flamenco.blender.org/usage/manager-configuration/ "
-                    "for more information.",
+        "https://flamenco.blender.org/usage/manager-configuration/ "
+        "for more information.",
     )
 
     feature_name: str = dist.name

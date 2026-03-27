@@ -312,6 +312,63 @@ feature_name: OpenStudioLandscapes-Flamenco
 #     None
 
 
+# =====================
+# flamenco_manager_yaml
+# ---------------------
+#
+# Type: typing.Dict
+# Description:
+#     The flamenco-manager.yaml. See https://flamenco.blender.org/usage/manager-configuration/ for more information.
+# Required:
+#     False
+# Examples:
+#     None
+flamenco_manager_yaml:
+  _meta:
+    version: 3
+  autodiscoverable: true
+  blocklist_threshold: 3
+  database: /app/flamenco-manager-storage/flamenco-manager.sqlite
+  database_check_period: 10m0s
+  listen: :8080
+  local_manager_storage_path: /app/flamenco-manager-storage
+  manager_name: OpenStudioLandscapes-Flamenco
+  mqtt:
+    client:
+      broker: ''
+      clientID: flamenco
+      password: ''
+      topic_prefix: flamenco
+      username: ''
+  shaman:
+    enabled: true
+    garbageCollect:
+      extraCheckoutPaths: []
+      maxAge: 744h0m0s
+      period: 24h0m0s
+  shared_storage_path: /app/flamenco-manager-storage-shared
+  task_fail_after_softfail_count: 3
+  task_timeout: 10m0s
+  variables:
+    blender:
+      values:
+      - audience: all
+        platform: linux
+        value: blender
+      - audience: all
+        platform: windows
+        value: blender.exe
+      - audience: all
+        platform: darwin
+        value: blender
+    blenderArgs:
+      values:
+      - audience: all
+        platform: all
+        value: --background --debug --enable-autoexec
+  worker_timeout: 1m0s
+
+
 # ==========================
 # flamenco_manager_port_host
 # --------------------------
@@ -380,64 +437,6 @@ flamenco_storage: '{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/storage'
 # Examples:
 #     None
 flamenco_shared_storage: '{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/shared_storage'
-
-
-# =========================================
-# flamenco_variables_blender_platform_linux
-# -----------------------------------------
-#
-# Type: <class 'pathlib.Path'>
-# Description:
-#     Path to the Linux Blender executable. More info: https://flamenco.blender.org/usage/variables/blender/
-# Required:
-#     False
-# Examples:
-#     None
-flamenco_variables_blender_platform_linux: blender
-
-
-# ===========================================
-# flamenco_variables_blender_platform_windows
-# -------------------------------------------
-#
-# Type: <class 'pathlib.Path'>
-# Description:
-#     Path to the Windows Blender executable. More info: https://flamenco.blender.org/usage/variables/blender/
-# Required:
-#     False
-# Examples:
-#     None
-flamenco_variables_blender_platform_windows: blender.exe
-
-
-# ==========================================
-# flamenco_variables_blender_platform_darwin
-# ------------------------------------------
-#
-# Type: <class 'pathlib.Path'>
-# Description:
-#     Path to the Darwin Blender executable. More info: https://flamenco.blender.org/usage/variables/blender/
-# Required:
-#     False
-# Examples:
-#     None
-flamenco_variables_blender_platform_darwin: blender
-
-
-# ===========================================
-# flamenco_variables_blender_commandline_args
-# -------------------------------------------
-#
-# Type: typing.List[str]
-# Description:
-#     Command line arguments passed to blender. Original defaults are `-b -y`. More info: https://docs.blender.org/manual/en/latest/advanced/command_line/arguments.html
-# Required:
-#     False
-# Examples:
-#     None
-flamenco_variables_blender_commandline_args:
-- --background
-- --enable-autoexec
 ```
 
 
@@ -578,4 +577,4 @@ To follow up on the previous LinkedIn publications, visit:
 
 ***
 
-Last changed: **2026-03-17 14:35:44 UTC**
+Last changed: **2026-03-27 00:04:11 UTC**
