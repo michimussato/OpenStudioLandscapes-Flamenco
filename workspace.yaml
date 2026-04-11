@@ -2,5 +2,5 @@
 
 load_from:
   - python_module:
-      module_name: "OpenStudioLandscapes.Flamenco.definitions"
+      module_name: "OpenStudioLandscapes.Flamenco._definitions_with_upstream_specs"
       location_name: "OpenStudioLandscapes-Flamenco"

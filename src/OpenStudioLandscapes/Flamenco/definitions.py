@@ -5,21 +5,19 @@ from dagster import (
 
 import OpenStudioLandscapes.Flamenco.assets
 import OpenStudioLandscapes.Flamenco.constants
-from OpenStudioLandscapes.engine.features.upstream_asset_specs import assets_external
 
-assets = load_assets_from_modules(
+assets_base = load_assets_from_modules(
     modules=[OpenStudioLandscapes.Flamenco.assets],
 )
 
-constants = load_assets_from_modules(
+constants_base = load_assets_from_modules(
     modules=[OpenStudioLandscapes.Flamenco.constants],
 )
 
 
 defs = Definitions(
     assets=[
-        *assets,
-        *constants,
-        *assets_external,
+        *assets_base,
+        *constants_base,
     ],
 )
