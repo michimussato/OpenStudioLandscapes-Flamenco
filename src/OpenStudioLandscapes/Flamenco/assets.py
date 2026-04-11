@@ -9,12 +9,15 @@ import yaml
 from dagster import (
     AssetExecutionContext,
     AssetIn,
+    AssetOut,
     AssetKey,
     AssetMaterialization,
     AssetsDefinition,
     MetadataValue,
     Output,
     asset,
+    AssetSpec,
+    multi_asset,
 )
 from OpenStudioLandscapes.engine.common_assets.cmd import get_feature__cmd
 from OpenStudioLandscapes.engine.common_assets.compose import get_compose
@@ -221,8 +224,24 @@ def write_dockerfile(
     )
 
 
-@asset(
-    **ASSET_HEADER,
+build_docker_image_spec = AssetSpec(
+    key=AssetKey(
+        [
+            *ASSET_HEADER["key_prefix"],
+            "build_docker_image",
+        ]
+    ),
+    group_name=ASSET_HEADER["group_name"],
+    description=textwrap.dedent("""
+        Todo
+        """),
+)
+
+
+@multi_asset(
+    outs={
+        "build_docker_image": AssetOut.from_spec(build_docker_image_spec),
+    },
     ins={
         "feature_in": AssetIn(
             AssetKey([*ASSET_HEADER["key_prefix"], "feature_in"]),
@@ -285,12 +304,17 @@ def build_docker_image(
         docker_file=write_dockerfile,
     )
 
-    yield Output(image_data)
+    output_name = "build_docker_image"
+
+    yield Output(
+        output_name=output_name,
+        value=image_data,
+    )
 
     yield AssetMaterialization(
-        asset_key=context.asset_key,
+        asset_key=context.asset_key_for_output(output_name),
         metadata={
-            "__".join(context.asset_key.path): MetadataValue.json(image_data),
+            "__".join(context.asset_key_for_output(output_name).path): MetadataValue.json(image_data),
             "env": MetadataValue.json(env),
             "docker_image": MetadataValue.path(
                 f"{image_data['image_prefixes']}{image_data['image_name']}:{image_data['image_tags'][0]}"
