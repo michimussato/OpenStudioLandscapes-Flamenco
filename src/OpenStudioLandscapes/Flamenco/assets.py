@@ -9,22 +9,18 @@ import yaml
 from dagster import (
     AssetExecutionContext,
     AssetIn,
-    AssetOut,
     AssetKey,
     AssetMaterialization,
+    AssetOut,
     AssetsDefinition,
+    AssetSpec,
     MetadataValue,
     Output,
     asset,
-    AssetSpec,
     multi_asset,
 )
 from OpenStudioLandscapes.engine.common_assets.cmd import get_feature__cmd
 from OpenStudioLandscapes.engine.common_assets.compose import get_compose
-
-# from OpenStudioLandscapes.engine.common_assets.compose_scope import (
-#     get_compose_scope_group__cmd,
-# )
 from OpenStudioLandscapes.engine.common_assets.docker_compose_graph import (
     get_docker_compose_graph,
 )
@@ -314,7 +310,9 @@ def build_docker_image(
     yield AssetMaterialization(
         asset_key=context.asset_key_for_output(output_name),
         metadata={
-            "__".join(context.asset_key_for_output(output_name).path): MetadataValue.json(image_data),
+            "__".join(
+                context.asset_key_for_output(output_name).path
+            ): MetadataValue.json(image_data),
             "env": MetadataValue.json(env),
             "docker_image": MetadataValue.path(
                 f"{image_data['image_prefixes']}{image_data['image_name']}:{image_data['image_tags'][0]}"
