@@ -400,6 +400,9 @@ def flamenco_manager_yaml(
 
     flamenco_manager_yaml_str = yaml.dump(flamenco_manager_yaml_dict)
 
+    # yaml.constructor.ConstructorError: could not determine a constructor for the tag 'tag:yaml.org,2002:python/object/apply:ruamel.yaml.comments.CommentedMap'
+    #   in "<unicode string>", line 1, column 8:
+    #     _meta: !!python/object/apply:ruamel.yam ...
     docker_yaml = yaml.safe_load(flamenco_manager_yaml_str)
 
     flamenco_yaml_obj = yaml.safe_dump(docker_yaml, indent=2)
