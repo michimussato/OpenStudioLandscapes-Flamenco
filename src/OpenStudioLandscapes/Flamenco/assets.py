@@ -1,11 +1,12 @@
 import copy
-import enum
+import json
 import pathlib
 import textwrap
 import urllib.parse
 from typing import Any, Dict, Generator, List, Union
+import ruamel.yaml
 
-import yaml
+# import yaml
 from dagster import (
     AssetExecutionContext,
     AssetIn,
@@ -44,10 +45,10 @@ from OpenStudioLandscapes.Flamenco.config.models import CONFIG_STR, Config
 from OpenStudioLandscapes.Flamenco.constants import *
 
 # https://github.com/yaml/pyyaml/issues/722#issuecomment-1969292770
-yaml.SafeDumper.add_multi_representer(
-    data_type=enum.Enum,
-    representer=yaml.representer.SafeRepresenter.represent_str,
-)
+# yaml.SafeDumper.add_multi_representer(
+#     data_type=enum.Enum,
+#     representer=yaml.representer.SafeRepresenter.represent_str,
+# )
 
 
 cmd: AssetsDefinition = get_feature__cmd(
@@ -353,7 +354,11 @@ def compose_networks(
         env=env,
     )
 
-    docker_yaml = yaml.dump(docker_dict)
+    docker_json = json.dumps(
+        docker_dict,
+        indent=2,
+        default=str,
+    )
 
     yield Output(docker_dict)
 
@@ -362,7 +367,7 @@ def compose_networks(
         metadata={
             "__".join(context.asset_key.path): MetadataValue.json(docker_dict),
             "compose_network_mode": MetadataValue.text(compose_network_mode.value),
-            "docker_yaml": MetadataValue.md(f"```yaml\n{docker_yaml}\n```"),
+            "docker_json": MetadataValue.md(f"```json\n{docker_json}\n```"),
         },
     )
 
@@ -396,21 +401,23 @@ def flamenco_manager_yaml(
         "flamenco-manager.yaml",
     ).expanduser()
 
+    flamenco_manager_yaml_path.parent.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
     flamenco_manager_yaml_dict: Dict = copy.deepcopy(CONFIG.flamenco_manager_yaml)
 
-    flamenco_manager_yaml_str = yaml.dump(flamenco_manager_yaml_dict)
+    context.log.debug(f"{flamenco_manager_yaml_dict = }")
 
-    # yaml.constructor.ConstructorError: could not determine a constructor for the tag 'tag:yaml.org,2002:python/object/apply:ruamel.yaml.comments.CommentedMap'
-    #   in "<unicode string>", line 1, column 8:
-    #     _meta: !!python/object/apply:ruamel.yam ...
-    docker_yaml = yaml.safe_load(flamenco_manager_yaml_str)
-
-    flamenco_yaml_obj = yaml.safe_dump(docker_yaml, indent=2)
-
-    flamenco_manager_yaml_path.parent.mkdir(parents=True, exist_ok=True)
-
+    yaml_ = ruamel.yaml.YAML(typ="rt")
+    yaml_.indent(
+        mapping=2,
+        sequence=2,
+        offset=0,
+    )
     with open(flamenco_manager_yaml_path, "w") as fw:
-        fw.write(flamenco_yaml_obj)
+        yaml_.dump(flamenco_manager_yaml_dict, fw)
 
     yield Output(flamenco_manager_yaml_path)
 
@@ -421,7 +428,7 @@ def flamenco_manager_yaml(
                 flamenco_manager_yaml_path
             ),
             "docker_yaml": MetadataValue.md(
-                f"```yaml\n{yaml.safe_dump(docker_yaml, indent=2)}\n```"
+                f"```yaml\n{flamenco_manager_yaml_path.read_text(encoding='utf-8')}\n```"
             ),
         },
     )
@@ -563,14 +570,18 @@ def compose_flamenco(
         },
     }
 
-    docker_yaml = yaml.dump(docker_dict)
+    docker_json = json.dumps(
+        docker_dict,
+        indent=2,
+        default=str,
+    )
 
     yield Output(docker_dict)
 
     yield AssetMaterialization(
         asset_key=context.asset_key,
         metadata={
-            "docker_yaml": MetadataValue.md(f"```yaml\n{docker_yaml}\n```"),
+            "docker_json": MetadataValue.md(f"```json\n{docker_json}\n```"),
         },
     )
 
