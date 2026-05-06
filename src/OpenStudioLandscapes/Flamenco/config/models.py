@@ -8,7 +8,7 @@ from pydantic import (
     PositiveInt,
 )
 
-from OpenStudioLandscapes.Flamenco import constants, dist, LOGGER
+from OpenStudioLandscapes.Flamenco import LOGGER, constants, dist
 
 
 class FlamencoArchives(enum.StrEnum):
