@@ -9,9 +9,9 @@ from pydantic import (
 )
 
 from OpenStudioLandscapes.Flamenco import (
-    dist,
     LOGGER,
     constants,
+    dist,
 )
 
 
