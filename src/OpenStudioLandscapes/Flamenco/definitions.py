@@ -4,7 +4,9 @@ from dagster import (
 )
 
 import OpenStudioLandscapes.Flamenco.assets
-import OpenStudioLandscapes.Flamenco.constants
+from OpenStudioLandscapes.Flamenco import *
+
+LOGGER.info(f"Loading {dist.name} assets...")
 
 assets_base = load_assets_from_modules(
     modules=[OpenStudioLandscapes.Flamenco.assets],
