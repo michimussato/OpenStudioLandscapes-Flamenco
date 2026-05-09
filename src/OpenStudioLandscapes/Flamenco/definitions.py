@@ -15,14 +15,8 @@ assets_base = load_assets_from_modules(
     modules=[OpenStudioLandscapes.Flamenco.assets],
 )
 
-constants_base = load_assets_from_modules(
-    modules=[OpenStudioLandscapes.Flamenco.constants],
-)
-
-
 defs = Definitions(
     assets=[
         *assets_base,
-        *constants_base,
     ],
 )
