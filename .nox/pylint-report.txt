@@ -22,16 +22,15 @@ src/OpenStudioLandscapes/Flamenco/assets.py:611:0: C0116: Missing function or me
 ************* Module OpenStudioLandscapes.Flamenco.definitions
 src/OpenStudioLandscapes/Flamenco/definitions.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 src/OpenStudioLandscapes/Flamenco/definitions.py:12:0: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
-************* Module OpenStudioLandscapes.Flamenco.constants
-src/OpenStudioLandscapes/Flamenco/constants.py:7:1: W0511: Todo (fixme)
-src/OpenStudioLandscapes/Flamenco/constants.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 ************* Module OpenStudioLandscapes.Flamenco._definitions_with_upstream_specs
 src/OpenStudioLandscapes/Flamenco/_definitions_with_upstream_specs.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+src/OpenStudioLandscapes/Flamenco/_definitions_with_upstream_specs.py:4:0: E0611: No name 'constants_base' in module 'OpenStudioLandscapes.Flamenco.definitions' (no-name-in-module)
 ************* Module OpenStudioLandscapes.Flamenco.__init__
 src/OpenStudioLandscapes/Flamenco/__init__.py:15:5: W0511: TODO: Import directly (no need for conditional) when `python_requires = >= 3.8` (fixme)
 ************* Module OpenStudioLandscapes.Flamenco
 src/OpenStudioLandscapes/Flamenco/__init__.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 src/OpenStudioLandscapes/Flamenco/__init__.py:1:0: C0103: Module name "Flamenco" doesn't conform to snake_case naming style (invalid-name)
+src/OpenStudioLandscapes/Flamenco/__init__.py:39:4: C0103: Constant name "fill" doesn't conform to UPPER_CASE naming style (invalid-name)
 ************* Module OpenStudioLandscapes.Flamenco.config.models
 src/OpenStudioLandscapes/Flamenco/config/models.py:37:0: C0301: Line too long (101/100) (line-too-long)
 src/OpenStudioLandscapes/Flamenco/config/models.py:35:5: W0511: Todo: (fixme)
@@ -62,5 +61,5 @@ src/OpenStudioLandscapes/Flamenco/doc/readme.py:29:8: C2801: Unnecessarily calls
 src/OpenStudioLandscapes/Flamenco/doc/readme.py:66:8: C2801: Unnecessarily calls dunder method __str__. Use str built-in function. (unnecessary-dunder-call)
 
 ------------------------------------------------------------------
-Your code has been rated at 7.44/10 (previous run: 6.51/10, +0.93)
+Your code has been rated at 7.22/10 (previous run: 6.52/10, +0.70)
 

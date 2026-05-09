@@ -9,9 +9,9 @@ from pydantic import (
 )
 
 from OpenStudioLandscapes.Flamenco import (
+    ASSET_HEADER,
     LOGGER,
     dist,
-    ASSET_HEADER,
 )
 
 
