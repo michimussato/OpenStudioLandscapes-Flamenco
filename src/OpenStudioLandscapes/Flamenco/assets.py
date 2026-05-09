@@ -54,8 +54,8 @@ from OpenStudioLandscapes.engine.utils.docker.compose_dicts import (
 
 from OpenStudioLandscapes.Flamenco import (
     config,
-    constants,
     dist,
+    ASSET_HEADER,
 )
 
 # https://github.com/yaml/pyyaml/issues/722#issuecomment-1969292770
@@ -66,38 +66,38 @@ from OpenStudioLandscapes.Flamenco import (
 
 
 cmd: AssetsDefinition = cmd.get_feature__cmd(
-    ASSET_HEADER=constants.ASSET_HEADER,
+    ASSET_HEADER=ASSET_HEADER,
 )
 
 CONFIG: AssetsDefinition = feature.get_feature__CONFIG(
-    ASSET_HEADER=constants.ASSET_HEADER,
+    ASSET_HEADER=ASSET_HEADER,
     CONFIG_STR=config.models.CONFIG_STR,
     search_model_of_type=config.models.Config,
 )
 
 feature_in: AssetsDefinition = group_in.get_feature_in(
-    ASSET_HEADER=constants.ASSET_HEADER,
+    ASSET_HEADER=ASSET_HEADER,
     ASSET_HEADER_BASE=ASSET_HEADER_BASE,
     ASSET_HEADER_FEATURE_IN={},
 )
 
 group_out: AssetsDefinition = group_out.get_group_out(
-    ASSET_HEADER=constants.ASSET_HEADER,
+    ASSET_HEADER=ASSET_HEADER,
 )
 
 
 docker_compose_graph: AssetsDefinition = docker_compose_graph.get_docker_compose_graph(
-    ASSET_HEADER=constants.ASSET_HEADER,
+    ASSET_HEADER=ASSET_HEADER,
 )
 
 
 compose: AssetsDefinition = compose.get_compose(
-    ASSET_HEADER=constants.ASSET_HEADER,
+    ASSET_HEADER=ASSET_HEADER,
 )
 
 
 feature_out_v2: AssetsDefinition = feature_out.get_feature_out_v2(
-    ASSET_HEADER=constants.ASSET_HEADER,
+    ASSET_HEADER=ASSET_HEADER,
 )
 
 
@@ -106,19 +106,19 @@ feature_out_v2: AssetsDefinition = feature_out.get_feature_out_v2(
 # - CONFIG_PARENT
 # if ConfigParent is or type FeatureBaseModel
 feature_in_parent: Union[AssetsDefinition, None] = group_in.get_feature_in_parent(
-    ASSET_HEADER=constants.ASSET_HEADER,
+    ASSET_HEADER=ASSET_HEADER,
     config_parent=ConfigParent,
 )
 
 
 @asset(
-    **constants.ASSET_HEADER,
+    **ASSET_HEADER,
     ins={
         "feature_in": AssetIn(
-            AssetKey([*constants.ASSET_HEADER["key_prefix"], "feature_in"]),
+            AssetKey([*ASSET_HEADER["key_prefix"], "feature_in"]),
         ),
         "CONFIG": AssetIn(
-            AssetKey([*constants.ASSET_HEADER["key_prefix"], "CONFIG"]),
+            AssetKey([*ASSET_HEADER["key_prefix"], "CONFIG"]),
         ),
     },
 )
@@ -238,11 +238,11 @@ def write_dockerfile(
 build_docker_image_spec = AssetSpec(
     key=AssetKey(
         [
-            *constants.ASSET_HEADER["key_prefix"],
+            *ASSET_HEADER["key_prefix"],
             "build_docker_image",
         ]
     ),
-    group_name=constants.ASSET_HEADER["group_name"],
+    group_name=ASSET_HEADER["group_name"],
     description=textwrap.dedent("""
         Todo
         """),
@@ -255,13 +255,13 @@ build_docker_image_spec = AssetSpec(
     },
     ins={
         "feature_in": AssetIn(
-            AssetKey([*constants.ASSET_HEADER["key_prefix"], "feature_in"]),
+            AssetKey([*ASSET_HEADER["key_prefix"], "feature_in"]),
         ),
         "CONFIG": AssetIn(
-            AssetKey([*constants.ASSET_HEADER["key_prefix"], "CONFIG"]),
+            AssetKey([*ASSET_HEADER["key_prefix"], "CONFIG"]),
         ),
         "write_dockerfile": AssetIn(
-            AssetKey([*constants.ASSET_HEADER["key_prefix"], "write_dockerfile"])
+            AssetKey([*ASSET_HEADER["key_prefix"], "write_dockerfile"])
         ),
     },
     retry_policy=build_docker_image_retry_policy,
@@ -344,10 +344,10 @@ def build_docker_image(
 
 
 @asset(
-    **constants.ASSET_HEADER,
+    **ASSET_HEADER,
     ins={
         "CONFIG": AssetIn(
-            AssetKey([*constants.ASSET_HEADER["key_prefix"], "CONFIG"]),
+            AssetKey([*ASSET_HEADER["key_prefix"], "CONFIG"]),
         ),
     },
 )
@@ -387,10 +387,10 @@ def compose_networks(
 
 
 @asset(
-    **constants.ASSET_HEADER,
+    **ASSET_HEADER,
     ins={
         "CONFIG": AssetIn(
-            AssetKey([*constants.ASSET_HEADER["key_prefix"], "CONFIG"]),
+            AssetKey([*ASSET_HEADER["key_prefix"], "CONFIG"]),
         ),
     },
     description=textwrap.dedent("""
@@ -449,19 +449,19 @@ def flamenco_manager_yaml(
 
 
 @asset(
-    **constants.ASSET_HEADER,
+    **ASSET_HEADER,
     ins={
         "CONFIG": AssetIn(
-            AssetKey([*constants.ASSET_HEADER["key_prefix"], "CONFIG"]),
+            AssetKey([*ASSET_HEADER["key_prefix"], "CONFIG"]),
         ),
         "build": AssetIn(
-            AssetKey([*constants.ASSET_HEADER["key_prefix"], "build_docker_image"]),
+            AssetKey([*ASSET_HEADER["key_prefix"], "build_docker_image"]),
         ),
         "compose_networks": AssetIn(
-            AssetKey([*constants.ASSET_HEADER["key_prefix"], "compose_networks"]),
+            AssetKey([*ASSET_HEADER["key_prefix"], "compose_networks"]),
         ),
         "flamenco_manager_yaml": AssetIn(
-            AssetKey([*constants.ASSET_HEADER["key_prefix"], "flamenco_manager_yaml"]),
+            AssetKey([*ASSET_HEADER["key_prefix"], "flamenco_manager_yaml"]),
         ),
     },
 )
@@ -601,10 +601,10 @@ def compose_flamenco(
 
 
 @asset(
-    **constants.ASSET_HEADER,
+    **ASSET_HEADER,
     ins={
         "compose_flamenco": AssetIn(
-            AssetKey([*constants.ASSET_HEADER["key_prefix"], "compose_flamenco"]),
+            AssetKey([*ASSET_HEADER["key_prefix"], "compose_flamenco"]),
         ),
     },
 )
