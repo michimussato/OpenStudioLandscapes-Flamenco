@@ -61,5 +61,5 @@ src/OpenStudioLandscapes/Flamenco/doc/readme.py:29:8: C2801: Unnecessarily calls
 src/OpenStudioLandscapes/Flamenco/doc/readme.py:66:8: C2801: Unnecessarily calls dunder method __str__. Use str built-in function. (unnecessary-dunder-call)
 
 ------------------------------------------------------------------
-Your code has been rated at 7.22/10 (previous run: 6.52/10, +0.70)
+Your code has been rated at 7.25/10 (previous run: 6.55/10, +0.70)
 
