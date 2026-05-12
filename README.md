@@ -86,145 +86,134 @@ The following settings are available in `OpenStudioLandscapes-Flamenco` and are 
 
 
 ```yaml
-$defs:
-  FlamencoArchives:
-    enum:
-    - https://flamenco.blender.org/downloads/flamenco-3.7-linux-amd64.tar.gz
-    - https://flamenco.blender.org/downloads/flamenco-3.8-linux-amd64.tar.gz
-    - https://flamenco.blender.org/downloads/flamenco-3.8.2-linux-amd64.tar.gz
-    title: FlamencoArchives
+compose_scope:
+  default: default
+  examples:
+  - default
+  - license_server
+  - worker
+  title: Compose Scope
+  type: string
+docker_compose:
+  default: '{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/docker_compose/docker-compose.yml'
+  description: The path to the `docker-compose.yml` file.
+  format: path
+  title: Docker Compose
+  type: string
+enabled:
+  default: true
+  description: Whether the Feature is enabled or not.
+  title: Enabled
+  type: boolean
+env:
+  additionalProperties: true
+  title: Env
+  type: object
+feature_name:
+  default: OpenStudioLandscapes-Flamenco
+  title: Feature Name
+  type: string
+flamenco_manager_port_container:
+  default: 8080
+  exclusiveMinimum: 0
+  title: Flamenco Manager Port Container
+  type: integer
+flamenco_manager_port_host:
+  default: 8484
+  exclusiveMinimum: 0
+  title: Flamenco Manager Port Host
+  type: integer
+flamenco_manager_yaml:
+  additionalProperties: true
+  default:
+    _meta:
+      version: 3
+    autodiscoverable: true
+    blocklist_threshold: 3
+    database: /app/flamenco-manager-storage/flamenco-manager.sqlite
+    database_check_period: 10m0s
+    listen: :8080
+    local_manager_storage_path: /app/flamenco-manager-storage
+    manager_name: OpenStudioLandscapes-Flamenco
+    mqtt:
+      client:
+        broker: ''
+        clientID: flamenco
+        password: ''
+        topic_prefix: flamenco
+        username: ''
+    shaman:
+      enabled: true
+      garbageCollect:
+        extraCheckoutPaths: []
+        maxAge: 744h0m0s
+        period: 24h0m0s
+    shared_storage_path: /app/flamenco-manager-storage-shared
+    task_fail_after_softfail_count: 3
+    task_timeout: 10m0s
+    variables:
+      blender:
+        values:
+        - audience: all
+          platform: linux
+          value: blender
+        - audience: all
+          platform: windows
+          value: blender.exe
+        - audience: all
+          platform: darwin
+          value: blender
+      blenderArgs:
+        values:
+        - audience: all
+          platform: all
+          value: --background --debug --enable-autoexec
+    worker_timeout: 1m0s
+  description: The flamenco-manager.yaml. See https://flamenco.blender.org/usage/manager-configuration/
+    for more information.
+  title: Flamenco Manager Yaml
+  type: object
+flamenco_shared_storage:
+  default: '{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/shared_storage'
+  format: path
+  title: Flamenco Shared Storage
+  type: string
+flamenco_storage:
+  default: '{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/storage'
+  format: path
+  title: Flamenco Storage
+  type: string
+flamenco_version:
+  $ref: '#/$defs/FlamencoArchives'
+  default: https://flamenco.blender.org/downloads/flamenco-3.8.2-linux-amd64.tar.gz
+  examples:
+  - version_3_7
+  - version_3_8
+  - version_3_8_2
+group_name:
+  default: OpenStudioLandscapes_Flamenco
+  title: Group Name
+  type: string
+key_prefixes:
+  default:
+  - OpenStudioLandscapes_Flamenco
+  items:
     type: string
-properties:
-  compose_scope:
-    default: default
-    examples:
-    - default
-    - license_server
-    - worker
-    title: Compose Scope
+  title: Key Prefixes
+  type: array
+local_bind_volumes:
+  description: Here you can define Feature specific, arbitrary, absolute bind volume
+    mappings.
+  items:
     type: string
-  docker_compose:
-    default: '{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/docker_compose/docker-compose.yml'
-    description: The path to the `docker-compose.yml` file.
-    format: path
-    title: Docker Compose
+  title: Local Bind Volumes
+  type: array
+local_environment_variables:
+  additionalProperties:
     type: string
-  enabled:
-    default: true
-    description: Whether the Feature is enabled or not.
-    title: Enabled
-    type: boolean
-  env:
-    additionalProperties: true
-    title: Env
-    type: object
-  feature_name:
-    default: OpenStudioLandscapes-Flamenco
-    title: Feature Name
-    type: string
-  flamenco_manager_port_container:
-    default: 8080
-    exclusiveMinimum: 0
-    title: Flamenco Manager Port Container
-    type: integer
-  flamenco_manager_port_host:
-    default: 8484
-    exclusiveMinimum: 0
-    title: Flamenco Manager Port Host
-    type: integer
-  flamenco_manager_yaml:
-    additionalProperties: true
-    default:
-      _meta:
-        version: 3
-      autodiscoverable: true
-      blocklist_threshold: 3
-      database: /app/flamenco-manager-storage/flamenco-manager.sqlite
-      database_check_period: 10m0s
-      listen: :8080
-      local_manager_storage_path: /app/flamenco-manager-storage
-      manager_name: OpenStudioLandscapes-Flamenco
-      mqtt:
-        client:
-          broker: ''
-          clientID: flamenco
-          password: ''
-          topic_prefix: flamenco
-          username: ''
-      shaman:
-        enabled: true
-        garbageCollect:
-          extraCheckoutPaths: []
-          maxAge: 744h0m0s
-          period: 24h0m0s
-      shared_storage_path: /app/flamenco-manager-storage-shared
-      task_fail_after_softfail_count: 3
-      task_timeout: 10m0s
-      variables:
-        blender:
-          values:
-          - audience: all
-            platform: linux
-            value: blender
-          - audience: all
-            platform: windows
-            value: blender.exe
-          - audience: all
-            platform: darwin
-            value: blender
-        blenderArgs:
-          values:
-          - audience: all
-            platform: all
-            value: --background --debug --enable-autoexec
-      worker_timeout: 1m0s
-    description: The flamenco-manager.yaml. See https://flamenco.blender.org/usage/manager-configuration/
-      for more information.
-    title: Flamenco Manager Yaml
-    type: object
-  flamenco_shared_storage:
-    default: '{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/shared_storage'
-    format: path
-    title: Flamenco Shared Storage
-    type: string
-  flamenco_storage:
-    default: '{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/storage'
-    format: path
-    title: Flamenco Storage
-    type: string
-  flamenco_version:
-    $ref: '#/$defs/FlamencoArchives'
-    default: https://flamenco.blender.org/downloads/flamenco-3.8.2-linux-amd64.tar.gz
-    examples:
-    - version_3_7
-    - version_3_8
-    - version_3_8_2
-  group_name:
-    default: OpenStudioLandscapes_Flamenco
-    title: Group Name
-    type: string
-  key_prefixes:
-    default:
-    - OpenStudioLandscapes_Flamenco
-    items:
-      type: string
-    title: Key Prefixes
-    type: array
-  local_bind_volumes:
-    description: Here you can define Feature specific, arbitrary, absolute bind volume
-      mappings.
-    items:
-      type: string
-    title: Local Bind Volumes
-    type: array
-  local_environment_variables:
-    additionalProperties:
-      type: string
-    description: Here you can define Feature specific, arbitrary environment variables.
-    title: Local Environment Variables
-    type: object
-title: Config
-type: object
+  description: Here you can define Feature specific, arbitrary environment variables.
+  title: Local Environment Variables
+  type: object
 
 ```
 
@@ -378,4 +367,4 @@ To follow up on the previous LinkedIn publications, visit:
 
 ***
 
-Last changed: **2026-05-09 11:17:34 UTC**
+Last changed: **2026-05-12 09:48:38 UTC**
