@@ -441,7 +441,7 @@ def flamenco_manager_yaml(
             "__".join(context.asset_key.path): MetadataValue.path(
                 flamenco_manager_yaml_path
             ),
-            "docker_yaml": MetadataValue.md(
+            "flamenco_manager_yaml": MetadataValue.md(
                 f"```yaml\n{flamenco_manager_yaml_path.read_text(encoding='utf-8')}\n```"
             ),
         },
