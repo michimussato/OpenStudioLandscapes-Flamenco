@@ -1,5 +1,6 @@
 import enum
 import pathlib
+import textwrap
 from typing import Dict, List
 
 from OpenStudioLandscapes.engine.config.models import FeatureBaseModel
@@ -174,6 +175,15 @@ class Config(FeatureBaseModel):
 
     flamenco_shared_storage: pathlib.Path = Field(
         default=pathlib.Path("{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/shared_storage"),
+    )
+
+    nvidia_container_toolkit_version: str = Field(
+        default="1.19.1-1",
+        description=textwrap.dedent(
+            """
+            https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
+            """
+        ),
     )
 
     # EXPANDABLE PATHS

@@ -194,6 +194,32 @@ def write_dockerfile(
         FROM {parent_image} AS {image_name}
         LABEL authors="{AUTHOR}"
         
+        RUN apt-get update \\
+            && apt-get -y \\
+                install --no-install-recommends \\
+                gpg \\
+            && apt-get -y autoremove --purge \\
+            && apt-get -y clean \\
+            && apt-get -y autoclean
+        
+        # Install nvidia-container-toolkit
+        RUN curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \\
+            && curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \\
+                sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \\
+                tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+                
+        RUN apt-get update \\
+            && apt-get -y install \\
+                --no-install-recommends \\
+                nvidia-container-toolkit={nvidia_container_toolkit_version} \\
+                nvidia-container-toolkit-base={nvidia_container_toolkit_version} \\
+                libnvidia-container-tools={nvidia_container_toolkit_version} \\
+                libnvidia-container1={nvidia_container_toolkit_version} \\
+            && apt-get -y autoremove \\
+                --purge \\
+            && apt-get -y clean \\
+            && apt-get -y autoclean
+        
         WORKDIR /app
         
         COPY --from=builder /app/tools/ffmpeg-linux-amd64 /app/tools/ffmpeg-linux-amd64
@@ -211,6 +237,7 @@ def write_dockerfile(
         # Todo: this won't work as expected if len(tags) > 1
         parent_image=f"{build_base_parent_image_prefix}{build_base_parent_image_name}:{build_base_parent_image_tags[0]}",
         flamenco_version=CONFIG.flamenco_version,
+        nvidia_container_toolkit_version=CONFIG.nvidia_container_toolkit_version,
         **env,
     )
     # @formatter:on
