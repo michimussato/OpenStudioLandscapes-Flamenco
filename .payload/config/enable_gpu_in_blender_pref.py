@@ -1,4 +1,5 @@
 import enum
+from typing import List
 import bpy
 
 import logging
@@ -27,7 +28,7 @@ class Backend(enum.StrEnum):
 def enable_gpus(
         device_type: DeviceType,
         use_cpus: bool = False,
-):
+) -> List[str]:
 
     log.warning(f"Trying to enable GPUs in Blender Preferences: {device_type}")
     log.warning(f"Trying to enable CPU in Blender Preferences: {use_cpus}")
