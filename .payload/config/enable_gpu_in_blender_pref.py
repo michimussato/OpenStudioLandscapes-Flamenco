@@ -24,7 +24,10 @@ class Backend(enum.StrEnum):
 # References:
 # - [](https://blender.stackexchange.com/a/256665/152092)
 
-def enable_gpus(device_type, use_cpus=False):
+def enable_gpus(
+        device_type: DeviceType,
+        use_cpus: bool = False,
+):
 
     log.warning(f"Trying to enable GPUs in Blender Preferences: {device_type}")
     log.warning(f"Trying to enable CPU in Blender Preferences: {use_cpus}")
