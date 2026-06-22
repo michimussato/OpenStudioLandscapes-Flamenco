@@ -1,8 +1,9 @@
 import enum
 from typing import List
+import logging
+
 import bpy
 
-import logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)-15s %(levelname)8s : %(message)s'
@@ -23,7 +24,7 @@ class Backend(enum.StrEnum):
 
 
 # References:
-# - [](https://blender.stackexchange.com/a/256665/152092)
+# - [Rendering on command-line with GPU?](https://blender.stackexchange.com/a/256665/152092)
 
 def enable_gpus(
         device_type: DeviceType,
