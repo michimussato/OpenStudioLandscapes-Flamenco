@@ -130,6 +130,8 @@ class ManagerConfigs(enum.Enum):
                     #     "platform": "",
                     #     "value": "",
                     # },
+                    # Todo:
+                    #  - [ ] can be removed after successful test on Windows
                     # {
                     #     "audience": "all",
                     #     "platform": "linux",
@@ -170,14 +172,6 @@ class ManagerConfigs(enum.Enum):
                     {
                         "audience": "all",
                         "platform": "all",
-                        # "value": " ".join(
-                        #     [
-                        #         "--background",
-                        #         "--debug",
-                        #         "--enable-autoexec",
-                        #         "--python-expr", shlex.quote(pathlib.Path(__file__).parent.parent.parent.parent.parent.joinpath(".payload", "config", "enable_gpu_in_blender_pref.py").read_text()),
-                        #     ]
-                        # ),
                         "value": shlex.join(
                             [
                                 "--background",
@@ -197,14 +191,6 @@ class ManagerConfigs(enum.Enum):
                                 ).read_text(),
                             ]
                         ),
-                        # "value": shlex.join(
-                        #     [
-                        #         "--background",
-                        #         "--debug",
-                        #         "--enable-autoexec",
-                        #         "--python", "-c", shlex.quote(pathlib.Path("/home/michael/git/repos/OpenStudioLandscapes/.features/OpenStudioLandscapes-Flamenco/.payload/config/enable_gpu_in_blender_pref.py").read_text()),
-                        #     ]
-                        # ),
                     },
                 ],
             },
