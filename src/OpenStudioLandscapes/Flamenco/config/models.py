@@ -2,6 +2,7 @@ import enum
 import pathlib
 import textwrap
 from typing import Dict, List
+import shlex
 
 from OpenStudioLandscapes.engine.config.models import FeatureBaseModel
 from pydantic import (
@@ -169,13 +170,41 @@ class ManagerConfigs(enum.Enum):
                     {
                         "audience": "all",
                         "platform": "all",
-                        "value": " ".join(
+                        # "value": " ".join(
+                        #     [
+                        #         "--background",
+                        #         "--debug",
+                        #         "--enable-autoexec",
+                        #         "--python-expr", shlex.quote(pathlib.Path(__file__).parent.parent.parent.parent.parent.joinpath(".payload", "config", "enable_gpu_in_blender_pref.py").read_text()),
+                        #     ]
+                        # ),
+                        "value": shlex.join(
                             [
                                 "--background",
                                 "--debug",
                                 "--enable-autoexec",
+                                "--python-expr",
+                                pathlib.Path(__file__)
+                                .parent
+                                .parent
+                                .parent
+                                .parent
+                                .parent
+                                .joinpath(
+                                    ".payload",
+                                    "config",
+                                    "enable_gpu_in_blender_pref.py",
+                                ).read_text(),
                             ]
                         ),
+                        # "value": shlex.join(
+                        #     [
+                        #         "--background",
+                        #         "--debug",
+                        #         "--enable-autoexec",
+                        #         "--python", "-c", shlex.quote(pathlib.Path("/home/michael/git/repos/OpenStudioLandscapes/.features/OpenStudioLandscapes-Flamenco/.payload/config/enable_gpu_in_blender_pref.py").read_text()),
+                        #     ]
+                        # ),
                     },
                 ],
             },
@@ -215,6 +244,7 @@ class Config(FeatureBaseModel):
 
     # Todo
     #  - [ ] Implement Postgres DB Backend?
+    #  - [ ] move `flamenco_worker_enable_nvidia_runtime` here?
 
     flamenco_storage: pathlib.Path = Field(
         default=pathlib.Path("{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/storage"),
