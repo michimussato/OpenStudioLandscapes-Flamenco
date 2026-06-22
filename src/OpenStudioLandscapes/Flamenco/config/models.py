@@ -177,6 +177,7 @@ class ManagerConfigs(enum.Enum):
                                 "--background",
                                 "--debug",
                                 "--enable-autoexec",
+                                # can have multiple `--python-expr`
                                 "--python-expr",
                                 pathlib.Path(__file__)
                                 .parent
