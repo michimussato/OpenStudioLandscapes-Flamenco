@@ -26,6 +26,12 @@ class FlamencoArchives(enum.StrEnum):
     version_3_8_2 = (
         "https://flamenco.blender.org/downloads/flamenco-3.8.2-linux-amd64.tar.gz"
     )
+    version_3_8_5 = (
+        "https://flamenco.blender.org/downloads/flamenco-3.8.5-linux-amd64.tar.gz"
+    )
+    version_3_9_2 = (
+        "https://flamenco.blender.org/downloads/flamenco-3.9.2-linux-amd64.tar.gz"
+    )
 
 
 FLAMENCO_DEFAULT_LISTEN_PORT: int = 8080
@@ -118,6 +124,43 @@ class ManagerConfigs(enum.Enum):
                     #     "audience": "",
                     #     "platform": "",
                     #     "value": "",
+                    # },
+                    # {
+                    #     "audience": "all",
+                    #     "platform": "linux",
+                    #     "value": " ".join(
+                    #         [
+                    #             "--background",
+                    #             "--debug",
+                    #             "--enable-autoexec",
+                    #             # https://stackoverflow.com/questions/2043453/executing-multi-line-statements-in-the-one-line-command-line
+                    #             "--python", "/app/flamenco-manager-storage-shared/scripts/enable_gpu_in_blender_pref.py"
+                    #         ]
+                    #     )
+                    # },
+                    # {
+                    #     "audience": "all",
+                    #     "platform": "windows",
+                    #     "value": " ".join(
+                    #         [
+                    #             "--background",
+                    #             "--debug",
+                    #             "--enable-autoexec",
+                    #             "--python", "'O:\scripts\enable_gpu_in_blender_pref.py'",
+                    #         ]
+                    #     )
+                    # },
+                    # {
+                    #     "audience": "all",
+                    #     "platform": "darwin",
+                    #     "value": " ".join(
+                    #         [
+                    #             "--background",
+                    #             "--debug",
+                    #             "--enable-autoexec",
+                    #             "--python", "/app/flamenco-manager-storage-shared/scripts/enable_gpu_in_blender_pref.py"
+                    #         ]
+                    #     )
                     # },
                     {
                         "audience": "all",
