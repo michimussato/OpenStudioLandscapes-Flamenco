@@ -34,6 +34,10 @@ class FlamencoArchives(enum.StrEnum):
     )
 
 
+class NvidiaContainerToolkit(enum.StrEnum):
+    version_1_19_1__1 = "1.19.1-1"
+
+
 FLAMENCO_DEFAULT_LISTEN_PORT: int = 8080
 
 
@@ -220,13 +224,14 @@ class Config(FeatureBaseModel):
         default=pathlib.Path("{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/shared_storage"),
     )
 
-    nvidia_container_toolkit_version: str = Field(
-        default="1.19.1-1",
+    nvidia_container_toolkit_version: NvidiaContainerToolkit = Field(
+        default=NvidiaContainerToolkit.version_1_19_1__1,
         description=textwrap.dedent(
             """
             https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
             """
         ),
+        examples=[i.name for i in NvidiaContainerToolkit],
     )
 
     # EXPANDABLE PATHS
