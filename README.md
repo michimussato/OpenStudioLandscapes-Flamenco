@@ -6,6 +6,7 @@
    1. [Brief](#brief)
    2. [Clone](#clone)
       1. [Clone and Install](#clone-and-install)
+      2. [Uninstall](#uninstall)
    3. [Configure](#configure)
       1. [Default Configuration](#default-configuration)
    4. [Local Development/Unit Testing/Debugging](#local-developmentunit-testingdebugging)
@@ -46,13 +47,31 @@ deactivate
 # Check the resulting console output for installation instructions
 ```
 
+If Feature repository was cloned locally already:
+
+```shell
+# cd OpenStudioLandscapes
+source .venv/bin/activate
+pip install --editable ./.features/<Feature>
+deactivate
+# Check the resulting console output for installation instructions
+```
+
 ### Clone and Install
 
 ```shell
 # cd OpenStudioLandscapes
 source .venv/bin/activate
-openstudiolandscapes clone-feature --repo=https://github.com/michimussato/OpenStudioLandscapes-Flamenco.git \
-    && pip install --editable ./.features/OpenStudioLandscapes-Flamenco
+openstudiolandscapes clone-feature --repo=https://github.com/michimussato/OpenStudioLandscapes-Flamenco.git --install
+deactivate
+```
+
+### Uninstall
+
+```shell
+# cd OpenStudioLandscapes
+source .venv/bin/activate
+pip uninstall OpenStudioLandscapes-Flamenco
 deactivate
 ```
 
@@ -167,7 +186,30 @@ flamenco_manager_yaml:
         values:
         - audience: all
           platform: all
-          value: --background --debug --enable-autoexec
+          value: "--background --debug --enable-autoexec --python-expr 'import enum\n\
+            from typing import List\nimport logging\n\nimport bpy\n\nlogging.basicConfig(\n\
+            \    level=logging.INFO,\n    format='\"'\"'%(asctime)-15s %(levelname)8s\
+            \ : %(message)s'\"'\"'\n)\n\nlog = logging.getLogger(\"enable_gpu_in_blender_pref\"\
+            )\n\n\nclass DeviceType(enum.StrEnum):\n    CUDA = \"CUDA\"\n    OPTIX\
+            \ = \"OPTIX\"\n\n\n# Todo\nclass Backend(enum.StrEnum):\n    OPENCL =\
+            \ \"OPENCL\"\n    VULKAN = \"VULKAN\"\n\n\n# References:\n# - [Rendering\
+            \ on command-line with GPU?](https://blender.stackexchange.com/a/256665/152092)\n\
+            \ndef enable_gpus(\n        device_type: DeviceType,\n        use_cpus:\
+            \ bool = False,\n) -> List[str]:\n\n    log.warning(f\"Trying to enable\
+            \ GPUs in Blender Preferences: {device_type}\")\n    log.warning(f\"Trying\
+            \ to enable CPU in Blender Preferences: {use_cpus}\")\n\n    preferences\
+            \ = bpy.context.preferences\n    cycles_preferences = preferences.addons[\"\
+            cycles\"].preferences\n    cycles_preferences.refresh_devices()\n    devices\
+            \ = cycles_preferences.devices\n\n    if not devices:\n        raise RuntimeError(\"\
+            Unsupported device type\")\n\n    activated_gpus = []\n\n    for device\
+            \ in devices:\n        if device.type == \"CPU\":\n            device.use\
+            \ = use_cpus\n        else:\n            device.use = True\n         \
+            \   activated_gpus.append(device.name)\n\n        log.warning(f\"{device.name}\
+            \ [{list(devices).index(device)}] enabled: {device.use}\")\n\n    cycles_preferences.compute_device_type\
+            \ = device_type\n    bpy.context.scene.cycles.device = \"GPU\"\n\n   \
+            \ log.info(f\"Activated GPUs: {activated_gpus}\")\n\n    return activated_gpus\n\
+            \n\nenable_gpus(\n    device_type=DeviceType.OPTIX,\n    use_cpus=True,\n\
+            )\n'"
     worker_timeout: 1m0s
   description: The flamenco-manager.yaml. See https://flamenco.blender.org/usage/manager-configuration/
     for more information.
@@ -190,6 +232,8 @@ flamenco_version:
   - version_3_7
   - version_3_8
   - version_3_8_2
+  - version_3_8_5
+  - version_3_9_2
 group_name:
   default: OpenStudioLandscapes_Flamenco
   title: Group Name
@@ -214,6 +258,16 @@ local_environment_variables:
   description: Here you can define Feature specific, arbitrary environment variables.
   title: Local Environment Variables
   type: object
+nvidia_container_toolkit_version:
+  $ref: '#/$defs/NvidiaContainerToolkit'
+  default: 1.19.1-1
+  description: '
+
+    https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
+
+    '
+  examples:
+  - version_1_19_1__1
 
 ```
 
@@ -367,4 +421,4 @@ To follow up on the previous LinkedIn publications, visit:
 
 ***
 
-Last changed: **2026-06-18 21:57:41 UTC**
+Last changed: **2026-07-09 12:09:04 UTC**
