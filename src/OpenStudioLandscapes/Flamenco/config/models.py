@@ -1,8 +1,8 @@
 import enum
 import pathlib
+import shlex
 import textwrap
 from typing import Dict, List
-import shlex
 
 from OpenStudioLandscapes.engine.config.models import FeatureBaseModel
 from pydantic import (
@@ -180,16 +180,12 @@ class ManagerConfigs(enum.Enum):
                                 # can have multiple `--python-expr`
                                 "--python-expr",
                                 pathlib.Path(__file__)
-                                .parent
-                                .parent
-                                .parent
-                                .parent
-                                .parent
-                                .joinpath(
+                                .parent.parent.parent.parent.parent.joinpath(
                                     ".payload",
                                     "config",
                                     "enable_gpu_in_blender_pref.py",
-                                ).read_text(),
+                                )
+                                .read_text(),
                             ]
                         ),
                     },
@@ -243,11 +239,9 @@ class Config(FeatureBaseModel):
 
     nvidia_container_toolkit_version: NvidiaContainerToolkit = Field(
         default=NvidiaContainerToolkit.version_1_19_1__1,
-        description=textwrap.dedent(
-            """
+        description=textwrap.dedent("""
             https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
-            """
-        ),
+            """),
         examples=[i.name for i in NvidiaContainerToolkit],
     )
 
