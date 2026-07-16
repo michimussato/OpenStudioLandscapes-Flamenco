@@ -221,7 +221,7 @@ class Config(FeatureBaseModel):
     # Todo
     # - [ ] Tuple?
     flamenco_version: FlamencoArchives = Field(
-        default=FlamencoArchives.version_3_8_2,
+        default=FlamencoArchives.version_3_9_2,
         examples=[i.name for i in FlamencoArchives],
     )
 
