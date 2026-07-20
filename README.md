@@ -13,7 +13,9 @@
 2. [External Resources](#external-resources)
    1. [Quickstart](#quickstart)
    2. [Topology](#topology)
-   3. [Help](#help)
+   3. [API](#api)
+      1. [Pangolin](#pangolin)
+   4. [Help](#help)
       1. [Manager](#manager)
       2. [Worker](#worker)
 3. [Community](#community)
@@ -227,7 +229,7 @@ flamenco_storage:
   type: string
 flamenco_version:
   $ref: '#/$defs/FlamencoArchives'
-  default: https://flamenco.blender.org/downloads/flamenco-3.8.2-linux-amd64.tar.gz
+  default: https://flamenco.blender.org/downloads/flamenco-3.9.2-linux-amd64.tar.gz
   examples:
   - version_3_7
   - version_3_8
@@ -309,6 +311,18 @@ Official Flamenco information.
 Source:
 
 - [Blender Studio - Installing Flamenco in 5 minutes](https://www.youtube.com/watch?v=O728EFaXuBk)
+
+## API
+
+A Swagger UI is running at `/api/v3/swagger-ui/`.
+
+### Pangolin
+
+To bypass Pangolin protection for the API endpoint (`/api/v3/`) you can use this as an example:
+
+![Pangolin Bypass Auth ](media/images/bypass_auth.png)
+
+![Flamenco Add-On ](media/images/flamenco_addon.png)
 
 ## Help
 
@@ -421,4 +435,4 @@ To follow up on the previous LinkedIn publications, visit:
 
 ***
 
-Last changed: **2026-07-09 12:09:04 UTC**
+Last changed: **2026-07-20 07:50:43 UTC**

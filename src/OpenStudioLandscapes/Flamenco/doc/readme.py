@@ -83,6 +83,43 @@ def readme_feature(
     )
 
     doc.add_heading(
+        text="API",
+        level=2,
+    )
+
+    doc.add_paragraph(text=textwrap.dedent("""\
+            A Swagger UI is running at `/api/v3/swagger-ui/`.\
+            """))
+
+    doc.add_heading(
+        text="Pangolin",
+        level=3,
+    )
+
+    doc.add_paragraph(text=textwrap.dedent("""\
+            To bypass Pangolin protection for the API endpoint (`/api/v3/`)
+            you can use this as an example:\
+            """))
+
+    doc.add_paragraph(
+        snakemd.Inline(
+            text=textwrap.dedent("""\
+                Pangolin Bypass Auth\
+                """),
+            image="media/images/bypass_auth.png",
+        ).__str__()
+    )
+
+    doc.add_paragraph(
+        snakemd.Inline(
+            text=textwrap.dedent("""\
+                Flamenco Add-On\
+                """),
+            image="media/images/flamenco_addon.png",
+        ).__str__()
+    )
+
+    doc.add_heading(
         text="Help",
         level=2,
     )
