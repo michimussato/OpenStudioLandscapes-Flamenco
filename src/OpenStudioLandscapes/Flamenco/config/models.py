@@ -33,6 +33,9 @@ class FlamencoArchives(enum.StrEnum):
     version_3_9_2 = (
         "https://flamenco.blender.org/downloads/flamenco-3.9.2-linux-amd64.tar.gz"
     )
+    version_3_9_3 = (
+        "https://flamenco.blender.org/downloads/flamenco-3.9.3-linux-amd64.tar.gz"
+    )
 
 
 class NvidiaContainerToolkit(enum.StrEnum):
@@ -221,7 +224,7 @@ class Config(FeatureBaseModel):
     # Todo
     # - [ ] Tuple?
     flamenco_version: FlamencoArchives = Field(
-        default=FlamencoArchives.version_3_9_2,
+        default=FlamencoArchives.version_3_9_3,
         examples=[i.name for i in FlamencoArchives],
     )
 
