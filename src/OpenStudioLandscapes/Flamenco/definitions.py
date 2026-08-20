@@ -4,7 +4,7 @@ from dagster import (
 )
 
 import OpenStudioLandscapes.Flamenco.assets
-from OpenStudioLandscapes.Flamenco import (
+from OpenStudioLandscapes.Flamenco.constants import (
     LOGGER,
     dist,
 )

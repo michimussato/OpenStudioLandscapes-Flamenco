@@ -10,7 +10,7 @@ from pydantic import (
     PositiveInt,
 )
 
-from OpenStudioLandscapes.Flamenco import (
+from OpenStudioLandscapes.Flamenco.constants import (
     ASSET_HEADER,
     LOGGER,
     dist,
