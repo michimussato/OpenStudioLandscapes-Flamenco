@@ -229,13 +229,14 @@ flamenco_storage:
   type: string
 flamenco_version:
   $ref: '#/$defs/FlamencoArchives'
-  default: https://flamenco.blender.org/downloads/flamenco-3.9.2-linux-amd64.tar.gz
+  default: https://flamenco.blender.org/downloads/flamenco-3.9.3-linux-amd64.tar.gz
   examples:
   - version_3_7
   - version_3_8
   - version_3_8_2
   - version_3_8_5
   - version_3_9_2
+  - version_3_9_3
 group_name:
   default: OpenStudioLandscapes_Flamenco
   title: Group Name
@@ -435,4 +436,4 @@ To follow up on the previous LinkedIn publications, visit:
 
 ***
 
-Last changed: **2026-07-20 11:13:02 UTC**
+Last changed: **2026-09-07 08:23:18 UTC**
